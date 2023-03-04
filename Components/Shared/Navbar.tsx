@@ -33,9 +33,9 @@ const Navbar: React.FC = (): JSX.Element => {
     },
   ];
   return (
-    <div className=" hidden md:block  w-full py-5 px-5 z-40 border border-l-0 border-b-gray-200 border-r-0">
+    <div className=" hidden md:block  w-full py-2 px-5 z-40 border border-l-0 border-b-gray-200 border-r-0">
       <div className="grid grid-cols-2 ">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           <Image src="/logo.svg" alt="logo pic" width="80" height="80" />
           <div>
             <p className="tracking-wide text-xl font-semibold text-indigo-700">
@@ -46,7 +46,7 @@ const Navbar: React.FC = (): JSX.Element => {
             </p>
           </div>
         </div>
-        <div className="flex justify-around pt-8">
+        <div className="flex justify-around pt-5">
           {menuItems.map((menuItem: { content: string; path: string }) => {
             return (
               <div key={menuItem.content}>
