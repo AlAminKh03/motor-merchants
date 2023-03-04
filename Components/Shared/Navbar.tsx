@@ -3,11 +3,14 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 
-type Props = {};
+interface MenuItems {
+  path: string;
+  content: string;
+}
 
-const Navbar = (props: Props) => {
+const Navbar: React.FC = (): JSX.Element => {
   const router = useRouter();
-  const menuItems = [
+  const menuItems: MenuItems[] = [
     {
       path: "/",
       content: "HOME",
