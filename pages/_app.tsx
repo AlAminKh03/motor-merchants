@@ -1,3 +1,5 @@
+import { Toaster } from "react-hot-toast";
+import AuthProvider from "../Components/Contexts/AuthProvider";
 import Navbar from "../Components/Shared/Navbar";
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
@@ -11,8 +13,11 @@ const PT = PT_Sans({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <div className={`${PT.className} mx-0 md:mx-[200px]`}>
-      <Navbar />
-      <Component {...pageProps} />
+      <AuthProvider>
+        <Toaster />
+        <Navbar />
+        <Component {...pageProps} />
+      </AuthProvider>
     </div>
   );
 }

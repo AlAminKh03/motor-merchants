@@ -1,8 +1,11 @@
 import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AiOutlineLock, AiOutlineMail, AiOutlineUser } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
+import { AuthContext } from "../Components/Contexts/AuthProvider";
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/router";
 
 interface Inputs {
   name: string;
@@ -11,14 +14,44 @@ interface Inputs {
 }
 
 const signup = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
+  const { createUser, manageUser, user } = useContext(AuthContext);
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const userData = {
+      userName: data.name,
+      email: data.email,
+    };
+    try {
+      const creatingUser = await createUser(data.email, data.password);
+      const userInfo = await manageUser({ displayName: data.name });
+      fetch("http://localhost:8000/user", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          console.log(result);
+          toast.success(`Successfully Signed Up`, {
+            duration: 5000,
+          });
+          router.push("/verifyEmail");
+        })
+        .catch((err) => console.log(err));
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
+      // if(user.emailVerified){
+      //   fetch(`http://localhost:8000/user/${}`);
+      // }
+    } catch (error) {
+      toast.error(`${error}`);
+    }
   };
   return (
     <div className="relative">
@@ -50,25 +83,27 @@ const signup = () => {
           </button>
           <div className="divider text-gray-400">or continue with email</div>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="relative pb-4">
+            <div className=" pb-3">
               <label className="">
                 Name <span className="text-red-500">*</span>{" "}
               </label>
               <br />
-              <input
-                type="text"
-                placeholder="Username"
-                {...register("name", { required: true })}
-                className={`border-2 outline-none rounded-md px-10 py-1 w-full ${
-                  errors.password
-                    ? "focus:border-red-600"
-                    : "focus:border-indigo-700"
-                }`}
-              />
-              <div className="absolute inset-y-0 left-0 flex items-center pl-2">
+              <div
+                className={`flex items-center border-2 border-gray-300 rounded-md ${
+                  errors.name
+                    ? "focus-within:border-red-600"
+                    : "focus-within:border-indigo-700"
+                } py-1 pr-8  `}
+              >
                 <AiOutlineUser
-                  className="h-5 w-5 text-gray-400"
+                  className="h-5 w-5 text-gray-400 ml-2 mr-2"
                   aria-hidden="true"
+                />
+                <input
+                  type="text"
+                  placeholder="Username"
+                  {...register("name", { required: true })}
+                  className={` outline-none w-full focus:border-transparent  `}
                 />
               </div>
               {errors.name?.type === "required" && (
@@ -77,27 +112,28 @@ const signup = () => {
                   Please fillup the user name
                 </p>
               )}
-              <br />
             </div>
-            <div className="pb-4 relative">
+            <div className="pb-3 ">
               <label className="">
                 Email <span className="text-red-500">*</span>{" "}
               </label>
               <br />
-              <input
-                type="text"
-                placeholder="motormerchant.dev"
-                {...register("email", { required: true })}
-                className={`border-2 outline-none rounded-md px-10 py-1 w-full ${
-                  errors.email
-                    ? "focus:border-red-600"
-                    : "focus:border-indigo-700"
-                }`}
-              />
-              <div className="absolute inset-y-0 left-0 flex items-center pl-2">
+              <div
+                className={`flex items-center border-2 border-gray-300 rounded-md ${
+                  errors.name
+                    ? "focus-within:border-red-600"
+                    : "focus-within:border-indigo-700"
+                } py-1 pr-8 `}
+              >
                 <AiOutlineMail
-                  className="h-5 w-5 text-gray-400 mt-1"
+                  className="h-5 w-5 text-gray-400 ml-2 mr-2"
                   aria-hidden="true"
+                />
+                <input
+                  type="text"
+                  placeholder="Insert your Email"
+                  {...register("email", { required: true })}
+                  className={` outline-none w-full focus:border-transparent  `}
                 />
               </div>
               {errors.email?.type === "required" && (
@@ -108,25 +144,27 @@ const signup = () => {
               )}
             </div>
 
-            <div className="relative">
+            <div className="pb-3">
               <label className="">
                 Password <span className="text-red-500">*</span>{" "}
               </label>
               <br />
-              <input
-                type="password"
-                placeholder="minimum 6 characters"
-                {...register("password", { required: true, minLength: 6 })}
-                className={`border-2 outline-none rounded-md px-10 py-1 w-full ${
-                  errors.password
-                    ? "focus:border-red-600"
-                    : "focus:border-indigo-700"
-                }`}
-              />
-              <div className="absolute bottom-2 left-0 flex items-center pl-2">
+              <div
+                className={`flex items-center border-2 border-gray-300 rounded-md ${
+                  errors.name
+                    ? "focus-within:border-red-600"
+                    : "focus-within:border-indigo-700"
+                } py-1 pr-8 `}
+              >
                 <AiOutlineLock
-                  className="h-5 w-5 text-gray-400"
+                  className="h-5 w-5 text-gray-400 ml-2 mr-2"
                   aria-hidden="true"
+                />
+                <input
+                  type="password"
+                  placeholder="insert minium 6 chracters"
+                  {...register("password", { required: true, minLength: 6 })}
+                  className={` outline-none w-full focus:border-transparent  `}
                 />
               </div>
               {errors.password?.type === "required" && (
@@ -147,7 +185,7 @@ const signup = () => {
             <div className="relative">
               <button
                 type="submit"
-                className=" w-full text-center text-indigo-700 border border-indigo-700 bg-white p-1  mt-5  hover:bg-indigo-100 transition-all duration-150 ease-in rounded-md"
+                className=" w-full text-center text-indigo-700 border border-indigo-700 bg-white p-1  mt-2  hover:bg-indigo-100 transition-all duration-150 ease-in rounded-md"
               >
                 {" "}
                 Signup

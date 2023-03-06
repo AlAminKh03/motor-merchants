@@ -1,9 +1,11 @@
 import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
+import { toast } from "react-hot-toast";
 import { AiOutlineMail } from "react-icons/ai";
 import { AiOutlineLock } from "react-icons/ai";
+import { AuthContext } from "../Components/Contexts/AuthProvider";
 
 interface Inputs {
   email: string;
@@ -11,17 +13,30 @@ interface Inputs {
 }
 
 const login: React.FC = (): JSX.Element => {
+  const { signInUser, user } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    try {
+      const signingUser = await signInUser(data.email, data.password);
+      console.log("from sign in user ", signingUser);
+      toast.success("Successfully Logged In  :smile: ");
+    } catch (err) {
+      console.log("error", err);
+      toast.error(`${err}`);
+    }
   };
   return (
-    <div className="relative">
+    <div
+      className="relative bg-no-repeat bg-[top_left_10rem] md:bg-[top_left_27rem] bg-cover h-screen"
+      style={{
+        backgroundImage: "url('/tire.jpg')",
+      }}
+    >
       <div className="flex flex-col justify-center items-center pt-7 mx-auto ">
         <div className="pb-4">
           <p className="text-4xl font-bold text-center ">Welcome Back!</p>
@@ -45,25 +60,27 @@ const login: React.FC = (): JSX.Element => {
           </button>
           <div className="divider text-gray-400">or continue with email</div>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="pb-4 relative">
+            <div className="pb-3 ">
               <label className="">
                 Email <span className="text-red-500">*</span>{" "}
               </label>
               <br />
-              <input
-                type="text"
-                placeholder="motormerchant.dev"
-                {...register("email", { required: true })}
-                className={`border-2 outline-none rounded-md px-10 py-1 w-full ${
+              <div
+                className={`flex items-center border-2 border-gray-300 rounded-md ${
                   errors.email
-                    ? "focus:border-red-600"
-                    : "focus:border-indigo-700"
-                }`}
-              />
-              <div className="absolute inset-y-0 left-0 flex items-center pl-2">
+                    ? "focus-within:border-red-600"
+                    : "focus-within:border-indigo-700"
+                } py-1 pr-8 `}
+              >
                 <AiOutlineMail
-                  className="h-5 w-5 text-gray-400 mt-1"
+                  className="h-5 w-5 text-gray-400 ml-2 mr-2"
                   aria-hidden="true"
+                />
+                <input
+                  type="text"
+                  placeholder="Insert your Email"
+                  {...register("email", { required: true })}
+                  className={` outline-none w-full focus:border-transparent  `}
                 />
               </div>
               {errors.email?.type === "required" && (
@@ -74,25 +91,27 @@ const login: React.FC = (): JSX.Element => {
               )}
             </div>
 
-            <div className="relative">
+            <div className="pb-3">
               <label className="">
                 Password <span className="text-red-500">*</span>{" "}
               </label>
               <br />
-              <input
-                type="password"
-                placeholder="write minimum 6 characters"
-                {...register("password", { required: true, minLength: 6 })}
-                className={`border-2 outline-none rounded-md px-10 py-1 w-full ${
+              <div
+                className={`flex items-center border-2 border-gray-300 rounded-md ${
                   errors.password
-                    ? "focus:border-red-600"
-                    : "focus:border-indigo-700"
-                }`}
-              />
-              <div className="absolute inset-y-0 left-0 flex items-center pl-2">
+                    ? "focus-within:border-red-600"
+                    : "focus-within:border-indigo-700"
+                } py-1 pr-8 `}
+              >
                 <AiOutlineLock
-                  className="h-5 w-5 text-gray-400"
+                  className="h-5 w-5 text-gray-400 ml-2 mr-2"
                   aria-hidden="true"
+                />
+                <input
+                  type="password"
+                  placeholder="insert minium 6 chracters"
+                  {...register("password", { required: true, minLength: 6 })}
+                  className={` outline-none w-full focus:border-transparent  `}
                 />
               </div>
               {errors.password?.type === "required" && (
@@ -108,16 +127,6 @@ const login: React.FC = (): JSX.Element => {
                 </p>
               )}
               <br />
-
-              <label className=" text-center text-xs font-light">
-                Forget Password?{" "}
-                <Link
-                  href={"/resetPassword"}
-                  className="cursor-pointer text-indigo-700"
-                >
-                  Reset Password
-                </Link>
-              </label>
             </div>
 
             <div className="relative">
