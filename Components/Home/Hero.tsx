@@ -8,7 +8,7 @@ type Props = {};
 
 const Hero = (props: Props) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 justify-around items-center gap-10 px-10 mt-5">
+    <div className="grid grid-cols-1 md:grid-cols-2 justify-around items-center gap-10 px-10 md:mt-5">
       <div>
         <p className="text-4xl font-bold text-black">
           <span className="bg-indigo-100 p-2 rounded-md">Power</span> Your Ride!
@@ -48,7 +48,7 @@ const Hero = (props: Props) => {
           </p>
         </div>
       </div>
-      <div className="w-[450px] md:w-[550px] h-[500px]">
+      <div className="w-[430px] h-[400px] md:w-[550px] md:h-[500px]">
         <Lottie animationData={Car} loop={true} />
       </div>
     </div>

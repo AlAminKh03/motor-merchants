@@ -2,8 +2,24 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Navbar from "../Components/Shared/Navbar";
 import Hero from "../Components/Home/Hero";
+import { useEffect } from "react";
+import Products from "../Components/Home/Products";
 
-export default function Home() {
+export interface ProductProps {
+  _id: string;
+  name: string;
+  price: number;
+  description: string;
+  minOrder: number;
+  available: number;
+  ImgUrl: string;
+}
+export interface HomeProps {
+  products: ProductProps[];
+}
+
+export default function Home({ products }: HomeProps) {
+  console.log(products);
   return (
     <div>
       <Head>
@@ -12,6 +28,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Hero />
+      <Products products={products} />
     </div>
   );
+}
+
+export async function getStaticProps(): Promise<{ props: HomeProps }> {
+  const data = await fetch("http://localhost:8000/products");
+  const products = await data.json();
+  return {
+    props: { products },
+  };
 }
