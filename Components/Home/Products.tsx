@@ -2,6 +2,7 @@ import React from "react";
 import { ProductProps } from "../../pages";
 import Image from "next/image";
 import { BiCartAlt } from "react-icons/bi";
+import Link from "next/link";
 
 interface ProductsProps {
   products: ProductProps[];
@@ -53,11 +54,11 @@ function Products({ products }: ProductsProps) {
                     / per unit
                   </p>
 
-                  <div className="py-3">
-                    <button className="flex items-center gap-3 uppercase text-indigo-900 font-semibold bg-indigo-100 p-2 rounded-md hover:bg-indigo-200">
-                      <BiCartAlt className="w-4 h-4" />
+                  <div className="py-3 flex items-center justify-start gap-3 uppercase text-indigo-900 font-semibold bg-indigo-100 p-2 rounded-md hover:bg-indigo-200 mr-24 cursor-pointer">
+                    <BiCartAlt className="w-4 h-4" />
+                    <Link className="" href={`/${product._id}`}>
                       Purchase
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>

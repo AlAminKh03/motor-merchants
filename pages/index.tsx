@@ -1,9 +1,7 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
-import Navbar from "../Components/Shared/Navbar";
 import Hero from "../Components/Home/Hero";
-import { useEffect } from "react";
 import Products from "../Components/Home/Products";
+import { GetStaticProps } from "next";
 
 export interface ProductProps {
   _id: string;
@@ -33,10 +31,12 @@ export default function Home({ products }: HomeProps) {
   );
 }
 
-export async function getStaticProps(): Promise<{ props: HomeProps }> {
+export const getStaticProps: GetStaticProps = async (): Promise<{
+  props: HomeProps;
+}> => {
   const data = await fetch("http://localhost:8000/products");
   const products = await data.json();
   return {
     props: { products },
   };
-}
+};
