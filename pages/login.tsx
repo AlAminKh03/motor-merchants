@@ -6,6 +6,7 @@ import { toast } from "react-hot-toast";
 import { AiOutlineMail } from "react-icons/ai";
 import { AiOutlineLock } from "react-icons/ai";
 import { AuthContext } from "../Components/Contexts/AuthProvider";
+import Loading from "../Components/Loading/Loading";
 
 interface Inputs {
   email: string;
@@ -13,7 +14,8 @@ interface Inputs {
 }
 
 const login: React.FC = (): JSX.Element => {
-  const { signInUser, user } = useContext(AuthContext);
+  const { signInUser, user, signInWithGoogle, loading, setLoading } =
+    useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -25,11 +27,19 @@ const login: React.FC = (): JSX.Element => {
       const signingUser = await signInUser(data.email, data.password);
       console.log("from sign in user ", signingUser);
       toast.success("Successfully Logged In  :smile: ");
+      setLoading(false);
     } catch (err) {
+      setLoading(false);
       console.log("error", err);
       toast.error(`${err}`);
     }
   };
+  const signInWithPopUp = () => {
+    signInWithGoogle();
+  };
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <div
       className="relative bg-no-repeat bg-[top_left_10rem] md:bg-[top_left_27rem] bg-cover h-screen"
@@ -54,7 +64,10 @@ const login: React.FC = (): JSX.Element => {
           </p>
         </div>
         <div className="flex flex-col items-center px-4 py-10 z-[10] bg-white w-[80%] md:w-[40%] shadow-2xl rounded-xl">
-          <button className=" flex items-center justify-center gap-2 py-1 px-14 rounded-full border hover:bg-indigo-50 transition-all duration-150 ease-in font-[500]">
+          <button
+            className=" flex items-center justify-center gap-2 py-1 px-14 rounded-full border hover:bg-indigo-50 transition-all duration-150 ease-in font-[500]"
+            onClick={signInWithPopUp}
+          >
             <FcGoogle />
             continue with google
           </button>
@@ -126,9 +139,16 @@ const login: React.FC = (): JSX.Element => {
                   Please insert atleast 6 chracters
                 </p>
               )}
-              <br />
             </div>
-
+            <label className=" text-center text-xs font-light">
+              Forget Password?{" "}
+              <Link
+                href={"/resetPassword"}
+                className="cursor-pointer text-indigo-700"
+              >
+                Reset Password
+              </Link>
+            </label>
             <div className="relative">
               <button
                 type="submit"

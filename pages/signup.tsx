@@ -6,6 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../Components/Contexts/AuthProvider";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
+import Loading from "../Components/Loading/Loading";
 
 interface Inputs {
   name: string;
@@ -20,7 +21,16 @@ const signup = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-  const { createUser, manageUser, user } = useContext(AuthContext);
+  // using context
+  const {
+    createUser,
+    manageUser,
+    user,
+    signInWithGoogle,
+    loading,
+    setLoading,
+  } = useContext(AuthContext);
+  // form submitting function
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const userData = {
       userName: data.name,
@@ -39,6 +49,7 @@ const signup = () => {
         .then((res) => res.json())
         .then((result) => {
           console.log(result);
+          setLoading(false);
           toast.success(`Successfully Signed Up`, {
             duration: 5000,
           });
@@ -50,9 +61,16 @@ const signup = () => {
       //   fetch(`http://localhost:8000/user/${}`);
       // }
     } catch (error) {
+      setLoading(false);
       toast.error(`${error}`);
     }
   };
+  const signInwithpopup = () => {
+    signInWithGoogle();
+  };
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <div className="relative">
       <div className="flex flex-col justify-center items-center pt-7 mx-auto ">
@@ -77,7 +95,10 @@ const signup = () => {
           </p>
         </div>
         <div className="flex flex-col items-center px-4 py-10 z-[10] bg-white w-[80%] md:w-[40%] shadow-2xl rounded-xl">
-          <button className=" flex items-center justify-center gap-2 py-1 px-14 rounded-full border hover:bg-indigo-50 transition-all duration-150 ease-in font-[500]">
+          <button
+            className=" flex items-center justify-center gap-2 py-1 px-14 rounded-full border hover:bg-indigo-50 transition-all duration-150 ease-in font-[500]"
+            onClick={signInwithpopup}
+          >
             <FcGoogle />
             continue with google
           </button>

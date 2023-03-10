@@ -1,11 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { ProductProps } from "../../pages";
 import { BiCartAlt, BiPhone } from "react-icons/bi";
 import Link from "next/link";
 import Image from "next/image";
-import { AiFillAmazonCircle, AiOutlineMail } from "react-icons/ai";
+import {
+  AiFillAmazonCircle,
+  AiOutlineMail,
+  AiOutlineMinus,
+  AiOutlinePlus,
+} from "react-icons/ai";
+import { FaAddressCard } from "react-icons/fa";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AuthContext } from "../Contexts/AuthProvider";
+import { toast } from "react-hot-toast";
 
 interface SingleProductProps {
   product: ProductProps;
@@ -13,19 +20,62 @@ interface SingleProductProps {
 interface InputProps {
   email: string;
   address: string;
+  phoneNumber: string;
+  quantity: number;
 }
 const SingleProduct = ({ product }: SingleProductProps) => {
+  let subTotalNumber = product?.price * product?.minOrder;
+  let totalNumber = subTotalNumber + 10;
+  const [value, setValue] = useState<number>(product.minOrder);
+  const [subTotal, setSubTotal] = useState<number>(subTotalNumber);
+  const [total, setTotal] = useState<number>(totalNumber);
   const { user } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
-  const onSubmit: SubmitHandler<InputProps> = async (data) => {
-    console.log(data);
+  } = useForm<InputProps>();
+  useEffect(() => {
+    setSubTotal(value * product.price);
+    setTotal(subTotal + 10);
+  }, [value, subTotal]);
+  const handleIncrease = () => {
+    setValue((prevValue) => prevValue + 1);
   };
+
+  const handleDecrease = () => {
+    if (value > product.minOrder) {
+      setValue((prevValue) => prevValue - 1);
+    }
+  };
+  const onSubmit: SubmitHandler<InputProps> = async (data, event) => {
+    event?.preventDefault();
+    const orderData = {
+      email: user?.email,
+      address: data.address,
+      phoneNumber: data.phoneNumber,
+      quantity: value,
+      price: total,
+    };
+    try {
+      const response = await fetch("http://localhost:8000/order", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(orderData),
+      });
+      const data = await response.json();
+      console.log(data);
+      toast.success("Order successfull ,for payment got to the dashboard");
+    } catch (err) {
+      console.log(err);
+      toast.error(`${err}`);
+    }
+  };
+
   return (
-    <div className="card card-side border border-gray-100 shadow-lg rounded-md grid grid-cols-2 items-center justify-center p-4 gap-2 ">
+    <div className="card card-side  grid grid-cols-1 md:grid-cols-2 items-center justify-center p-4 gap-2 ">
       <div>
         <div className="flex items-center gap-4">
           {" "}
@@ -63,22 +113,24 @@ const SingleProduct = ({ product }: SingleProductProps) => {
               <span className="text-lg font-bold ">${product.price}</span>/ per
               unit
             </p>
-
-            <div className="py-3 flex items-center justify-start gap-3 uppercase text-indigo-900 font-semibold bg-indigo-100 p-2 rounded-md hover:bg-indigo-200 mr-24 cursor-pointer">
-              <BiCartAlt className="w-4 h-4" />
-              <Link className="" href={`/${product._id}`}>
-                Purchase
-              </Link>
-            </div>
           </div>
         </div>
         <div>
           <div className="flex items-center  gap-32">
             <div>
               <p className="text-black font-bold">Order Summary : </p>
-              <p className="text-gray-500 font-bold">Subtotal </p>
-              <p className="text-gray-500 font-bold">Shipping fee </p>
-              <p className="text-gray-500 font-bold">total </p>
+              <div className="flex items-center gap-14">
+                <p className="text-gray-500 font-bold  ">Subtotal </p>
+                <p className="text-right">$ {subTotal}</p>
+              </div>
+              <div className="flex items-center gap-10">
+                <p className="text-gray-500 font-bold ">Shipping Fee </p>
+                <p className="text-right">$ 10</p>
+              </div>
+              <div className="flex items-center gap-20">
+                <p className="text-gray-500 font-bold ">Total </p>
+                <p className="text-right">$ {total}</p>
+              </div>
             </div>
             <div>
               <p className="text-black font-bold">Shipping: </p>
@@ -94,7 +146,10 @@ const SingleProduct = ({ product }: SingleProductProps) => {
           </div>
         </div>
       </div>
-      <div>
+      <div className="mx-24 my-10">
+        <p className="font-bold text-black text-center bg-indigo-100 p-2 rounded-md">
+          {user?.displayName}{" "}
+        </p>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="pb-3 ">
             <label className="">
@@ -106,19 +161,25 @@ const SingleProduct = ({ product }: SingleProductProps) => {
                 errors.email
                   ? "focus-within:border-red-600"
                   : "focus-within:border-indigo-700"
-              } py-1 pr-8 `}
+              } py-1 pr-8`}
             >
               <AiOutlineMail
                 className="h-5 w-5 text-gray-400 ml-2 mr-2"
                 aria-hidden="true"
               />
               <input
-                type="text"
-                placeholder="Insert your Email"
+                type="email"
+                value={user?.email}
                 {...register("email", { required: true })}
-                className={` outline-none w-full focus:border-transparent  `}
+                className={` outline-none w-full focus:border-transparent text-xs text-gray-500 font-bold `}
               />
             </div>
+            {errors.email?.type === "required" && (
+              <p className="text-red-600 text-center text-xs font-light">
+                {" "}
+                Please fillup the email
+              </p>
+            )}
           </div>
 
           <div className="pb-3">
@@ -133,40 +194,91 @@ const SingleProduct = ({ product }: SingleProductProps) => {
                   : "focus-within:border-indigo-700"
               } py-1 pr-8 `}
             >
-              <BiPhone
+              <FaAddressCard
                 className="h-5 w-5 text-gray-400 ml-2 mr-2"
                 aria-hidden="true"
               />
               <input
-                type="password"
-                placeholder="insert minium 6 chracters"
+                type="text"
+                placeholder="insert your shipping address"
                 {...register("address", { required: true, minLength: 6 })}
-                className={` outline-none w-full focus:border-transparent  `}
+                className={` outline-none w-full focus:border-transparent  text-xs`}
               />
             </div>
-            {errors.password?.type === "required" && (
+            {errors.address?.type === "required" && (
               <p className="text-red-600 text-center text-xs font-light">
                 {" "}
                 Please fillup the address
               </p>
             )}
-            {errors.password?.type === "minLength" && (
+          </div>
+          <div className="pb-3">
+            <label className="">
+              Phone Number <span className="text-red-500">*</span>{" "}
+            </label>
+            <br />
+            <div
+              className={`flex items-center border-2 border-gray-300 rounded-md ${
+                errors.phoneNumber
+                  ? "focus-within:border-red-600"
+                  : "focus-within:border-indigo-700"
+              } py-1 pr-8 `}
+            >
+              <BiPhone
+                className="h-5 w-5 text-gray-400 ml-2 mr-2"
+                aria-hidden="true"
+              />
+              <input
+                type="text"
+                placeholder="insert your phone Number"
+                {...register("phoneNumber", { required: true })}
+                className={` outline-none w-full focus:border-transparent text-xs `}
+              />
+            </div>
+            {errors.phoneNumber?.type === "required" && (
               <p className="text-red-600 text-center text-xs font-light">
                 {" "}
-                Please insert atleast 6 chracters
+                Please fillup your phone Number
               </p>
             )}
+          </div>
+          <div className="pb-3 mr-24">
+            <label className="">
+              Quantity <span className="text-red-500">*</span>{" "}
+            </label>
+            <br />
+            <div
+              className={`flex items-center border-2 border-gray-300 rounded-md ${
+                errors.quantity
+                  ? "focus-within:border-red-600"
+                  : "focus-within:border-indigo-700"
+              } py-1 px-8 `}
+            >
+              <button type="button" onClick={handleDecrease}>
+                <AiOutlineMinus className="text-xl font-bold cursor-pointer" />
+              </button>
+              <input
+                type="number"
+                {...register("quantity")}
+                value={value}
+                min={product.minOrder}
+                max={product.available}
+                onChange={(e) => setValue(parseInt(e.target.value))}
+                className={` outline-none w-full focus:border-transparent text-center `}
+              />
+              <button type="button" onClick={handleIncrease}>
+                <AiOutlinePlus className="text-xl font-bold cursor-pointer" />
+              </button>
+            </div>
+
             <br />
           </div>
 
           <div className="relative">
-            <button
-              type="submit"
-              className=" w-full text-center text-indigo-700 border border-indigo-700 bg-white p-1  mt-5  hover:bg-indigo-100 transition-all duration-150 ease-in rounded-md"
-            >
-              {" "}
-              Login
-            </button>
+            <div className="py-3 flex items-center justify-center gap-3 uppercase text-indigo-900 font-semibold bg-indigo-100 p-2 rounded-md hover:bg-indigo-200 mr-24 cursor-pointer">
+              <BiCartAlt className="w-4 h-4" />
+              <button type="submit">place order</button>
+            </div>
           </div>
         </form>
       </div>

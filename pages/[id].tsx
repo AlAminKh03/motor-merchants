@@ -2,16 +2,18 @@ import React from "react";
 import { ProductProps } from ".";
 import { GetStaticPaths, GetStaticProps } from "next";
 import SingleProduct from "../Components/SingleProducts/SingleProduct";
+import PrivateRoute from "../Components/PrivateRoute/PrivateRoute";
 
 interface SingleProductProps {
   product: ProductProps;
 }
 
 const productDetails = ({ product }: SingleProductProps) => {
-  console.log(product);
   return (
     <div>
-      <SingleProduct product={product} />
+      <PrivateRoute>
+        <SingleProduct product={product} />
+      </PrivateRoute>
     </div>
   );
 };
@@ -24,7 +26,6 @@ export const getStaticProps: GetStaticProps = async ({
   props: SingleProductProps;
 }> => {
   const id = params;
-  console.log(id);
   const response = await fetch(`http://localhost:8000/products/${id?.id}`);
   const product = await response.json();
   return {
