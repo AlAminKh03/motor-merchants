@@ -12,7 +12,7 @@ const PT = PT_Sans({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <div className={`${PT.className} mx-0 md:mx-[200px]`}>
+    <div className={`${PT.className} `}>
       <AuthProvider>
         <Toaster />
         <Navbar />

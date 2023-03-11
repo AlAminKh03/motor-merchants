@@ -10,7 +10,7 @@ interface SingleProductProps {
 
 const productDetails = ({ product }: SingleProductProps) => {
   return (
-    <div>
+    <div className="mx-0 md:mx-[200px]">
       <PrivateRoute>
         <SingleProduct product={product} />
       </PrivateRoute>

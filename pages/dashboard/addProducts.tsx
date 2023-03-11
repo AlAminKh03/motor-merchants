@@ -13,6 +13,7 @@ import {
 import { toast } from "react-hot-toast";
 import PrivateRoute from "../../Components/PrivateRoute/PrivateRoute";
 import NestedNav from "../../Components/PrivateRoute/NestedNav";
+import Loading from "../../Components/Loading/Loading";
 
 interface Inputs {
   name: string;
@@ -30,7 +31,7 @@ const addProducts = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-  const { createUser, manageUser, user } = useContext(AuthContext);
+  const { loading } = useContext(AuthContext);
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const productData = {
       name: data.name,
@@ -54,221 +55,228 @@ const addProducts = () => {
         toast.success("data saved to database successfully");
       });
   };
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <PrivateRoute>
-      <NestedNav />
-      <div className="relative">
-        <div className="flex flex-col justify-center items-center pt-7 mx-auto ">
-          <div className="pb-4">
-            <p className="text-4xl font-bold text-center ">
-              Hello{" "}
-              <span className="text-transparent   bg-clip-text bg-gradient-to-r from-indigo-700 to-purple-500  font-bold">
-                Merchants{" "}
-              </span>
-              <span className="badge badge-xs text-xs uppercase">
-                Admin/Mod
-              </span>
-            </p>
-          </div>
-          <div className="flex flex-col items-center px-4 py-10 z-[10] bg-white w-[80%] md:w-[50%] shadow-2xl rounded-xl">
-            <form onSubmit={handleSubmit(onSubmit)}>
-              {/* PRODUCT NAME  */}
-              <div className=" pb-3 w-full">
-                <label className="">
-                  Product Name <span className="text-red-500">*</span>{" "}
-                </label>
-                <br />
-                <div
-                  className={`flex items-center border-2 border-gray-300 rounded-md w-[350px] ${
-                    errors.name
-                      ? "focus-within:border-red-600"
-                      : "focus-within:border-indigo-700"
-                  } py-1 pr-8  `}
-                >
-                  <MdDriveFileRenameOutline
-                    className="h-5 w-5 text-gray-400 ml-2 mr-2"
-                    aria-hidden="true"
-                  />
-                  <input
-                    type="text"
-                    placeholder="name"
-                    {...register("name", { required: true })}
-                    className={` outline-none focus:border-transparent  `}
-                  />
+      <div className="flex justify-center">
+        <div className="">
+          <NestedNav />
+        </div>
+        <div className="relative mx-auto pt-10 lg:pt-0">
+          <div className="flex flex-col justify-center items-center pt-7 mx-auto ">
+            <div className="pb-4">
+              <p className="text-4xl font-bold text-center ">
+                Hello{" "}
+                <span className="text-transparent   bg-clip-text bg-gradient-to-r from-indigo-700 to-purple-500  font-bold">
+                  Merchants{" "}
+                </span>
+                <span className="badge badge-xs text-xs uppercase">
+                  Admin/Mod
+                </span>
+              </p>
+            </div>
+            <div className="flex flex-col items-center px-4 py-10  w-[80%] md:w-[50%]">
+              <form onSubmit={handleSubmit(onSubmit)}>
+                {/* PRODUCT NAME  */}
+                <div className=" pb-3 w-full">
+                  <label className="">
+                    Product Name <span className="text-red-500">*</span>{" "}
+                  </label>
+                  <br />
+                  <div
+                    className={`flex items-center border-2 border-gray-300 rounded-md w-[350px] ${
+                      errors.name
+                        ? "focus-within:border-red-600"
+                        : "focus-within:border-indigo-700"
+                    } py-1 pr-8  `}
+                  >
+                    <MdDriveFileRenameOutline
+                      className="h-5 w-5 text-gray-400 ml-2 mr-2"
+                      aria-hidden="true"
+                    />
+                    <input
+                      type="text"
+                      placeholder="name"
+                      {...register("name", { required: true })}
+                      className={` outline-none focus:border-transparent  `}
+                    />
+                  </div>
+                  {errors.name?.type === "required" && (
+                    <p className="text-red-600 text-center text-xs font-light">
+                      {" "}
+                      Please fillup the Product Name
+                    </p>
+                  )}
                 </div>
-                {errors.name?.type === "required" && (
-                  <p className="text-red-600 text-center text-xs font-light">
-                    {" "}
-                    Please fillup the Product Name
-                  </p>
-                )}
-              </div>
-              {/* PRICE  */}
-              <div className="pb-3">
-                <label className="">
-                  Price <span className="text-red-500">*</span>{" "}
-                </label>
-                <br />
-                <div
-                  className={`flex items-center border-2 border-gray-300 rounded-md ${
-                    errors.name
-                      ? "focus-within:border-red-600"
-                      : "focus-within:border-indigo-700"
-                  } py-1 pr-8 `}
-                >
-                  <IoPricetagOutline
-                    className="h-5 w-5 text-gray-400 ml-2 mr-2"
-                    aria-hidden="true"
-                  />
-                  <input
-                    type="number"
-                    placeholder="insert price"
-                    {...register("price", { required: true })}
-                    className={` outline-none w-full focus:border-transparent  `}
-                  />
+                {/* PRICE  */}
+                <div className="pb-3">
+                  <label className="">
+                    Price <span className="text-red-500">*</span>{" "}
+                  </label>
+                  <br />
+                  <div
+                    className={`flex items-center border-2 border-gray-300 rounded-md ${
+                      errors.name
+                        ? "focus-within:border-red-600"
+                        : "focus-within:border-indigo-700"
+                    } py-1 pr-8 `}
+                  >
+                    <IoPricetagOutline
+                      className="h-5 w-5 text-gray-400 ml-2 mr-2"
+                      aria-hidden="true"
+                    />
+                    <input
+                      type="number"
+                      placeholder="insert price"
+                      {...register("price", { required: true })}
+                      className={` outline-none w-full focus:border-transparent  `}
+                    />
+                  </div>
+                  {errors.price?.type === "required" && (
+                    <p className="text-red-600 text-center text-xs font-light">
+                      {" "}
+                      Please fillup the Password Input
+                    </p>
+                  )}
                 </div>
-                {errors.price?.type === "required" && (
-                  <p className="text-red-600 text-center text-xs font-light">
-                    {" "}
-                    Please fillup the Password Input
-                  </p>
-                )}
-              </div>
-              {/* MINORDER  */}
-              <div className="pb-3">
-                <label className="">
-                  Minimum Order <span className="text-red-500">*</span>{" "}
-                </label>
-                <br />
-                <div
-                  className={`flex items-center border-2 border-gray-300 rounded-md ${
-                    errors.name
-                      ? "focus-within:border-red-600"
-                      : "focus-within:border-indigo-700"
-                  } py-1 pr-8 `}
-                >
-                  <FiMinimize
-                    className="h-5 w-5 text-gray-400 ml-2 mr-2"
-                    aria-hidden="true"
-                  />
-                  <input
-                    type="number"
-                    placeholder="insert minium 6 chracters"
-                    {...register("minOrder", { required: true })}
-                    className={` outline-none w-full focus:border-transparent  `}
-                  />
+                {/* MINORDER  */}
+                <div className="pb-3">
+                  <label className="">
+                    Minimum Order <span className="text-red-500">*</span>{" "}
+                  </label>
+                  <br />
+                  <div
+                    className={`flex items-center border-2 border-gray-300 rounded-md ${
+                      errors.name
+                        ? "focus-within:border-red-600"
+                        : "focus-within:border-indigo-700"
+                    } py-1 pr-8 `}
+                  >
+                    <FiMinimize
+                      className="h-5 w-5 text-gray-400 ml-2 mr-2"
+                      aria-hidden="true"
+                    />
+                    <input
+                      type="number"
+                      placeholder="insert minium 6 chracters"
+                      {...register("minOrder", { required: true })}
+                      className={` outline-none w-full focus:border-transparent  `}
+                    />
+                  </div>
+                  {errors.minOrder?.type === "required" && (
+                    <p className="text-red-600 text-center text-xs font-light">
+                      {" "}
+                      Please fillup the Password Input
+                    </p>
+                  )}
                 </div>
-                {errors.minOrder?.type === "required" && (
-                  <p className="text-red-600 text-center text-xs font-light">
-                    {" "}
-                    Please fillup the Password Input
-                  </p>
-                )}
-              </div>
-              {/* AVAILABLE ORDER  */}
-              <div className="pb-3">
-                <label className="">
-                  Available <span className="text-red-500">*</span>{" "}
-                </label>
-                <br />
-                <div
-                  className={`flex items-center border-2 border-gray-300 rounded-md ${
-                    errors.name
-                      ? "focus-within:border-red-600"
-                      : "focus-within:border-indigo-700"
-                  } py-1 pr-8 `}
-                >
-                  <MdEventAvailable
-                    className="h-5 w-5 text-gray-400 ml-2 mr-2"
-                    aria-hidden="true"
-                  />
-                  <input
-                    type="number"
-                    placeholder="insert minium 6 chracters"
-                    {...register("available", { required: true })}
-                    className={` outline-none w-full focus:border-transparent  `}
-                  />
+                {/* AVAILABLE ORDER  */}
+                <div className="pb-3">
+                  <label className="">
+                    Available <span className="text-red-500">*</span>{" "}
+                  </label>
+                  <br />
+                  <div
+                    className={`flex items-center border-2 border-gray-300 rounded-md ${
+                      errors.name
+                        ? "focus-within:border-red-600"
+                        : "focus-within:border-indigo-700"
+                    } py-1 pr-8 `}
+                  >
+                    <MdEventAvailable
+                      className="h-5 w-5 text-gray-400 ml-2 mr-2"
+                      aria-hidden="true"
+                    />
+                    <input
+                      type="number"
+                      placeholder="insert minium 6 chracters"
+                      {...register("available", { required: true })}
+                      className={` outline-none w-full focus:border-transparent  `}
+                    />
+                  </div>
+                  {errors.available?.type === "required" && (
+                    <p className="text-red-600 text-center text-xs font-light">
+                      {" "}
+                      Please fillup the Password Input
+                    </p>
+                  )}
                 </div>
-                {errors.available?.type === "required" && (
-                  <p className="text-red-600 text-center text-xs font-light">
-                    {" "}
-                    Please fillup the Password Input
-                  </p>
-                )}
-              </div>
-              {/* IMAGE URL  */}
-              <div className="pb-3">
-                <label className="">
-                  Image Url <span className="text-red-500">*</span>{" "}
-                </label>
-                <br />
-                <div
-                  className={`flex items-center border-2 border-gray-300 rounded-md ${
-                    errors.name
-                      ? "focus-within:border-red-600"
-                      : "focus-within:border-indigo-700"
-                  } py-1 pr-8 `}
-                >
-                  <AiOutlineFileImage
-                    className="h-5 w-5 text-gray-400 ml-2 mr-2"
-                    aria-hidden="true"
-                  />
-                  <input
-                    type="text"
-                    placeholder="insert minium 6 chracters"
-                    {...register("ImgUrl", { required: true, minLength: 6 })}
-                    className={` outline-none w-full focus:border-transparent  `}
-                  />
+                {/* IMAGE URL  */}
+                <div className="pb-3">
+                  <label className="">
+                    Image Url <span className="text-red-500">*</span>{" "}
+                  </label>
+                  <br />
+                  <div
+                    className={`flex items-center border-2 border-gray-300 rounded-md ${
+                      errors.name
+                        ? "focus-within:border-red-600"
+                        : "focus-within:border-indigo-700"
+                    } py-1 pr-8 `}
+                  >
+                    <AiOutlineFileImage
+                      className="h-5 w-5 text-gray-400 ml-2 mr-2"
+                      aria-hidden="true"
+                    />
+                    <input
+                      type="text"
+                      placeholder="insert minium 6 chracters"
+                      {...register("ImgUrl", { required: true, minLength: 6 })}
+                      className={` outline-none w-full focus:border-transparent  `}
+                    />
+                  </div>
+                  {errors.ImgUrl?.type === "required" && (
+                    <p className="text-red-600 text-center text-xs font-light">
+                      {" "}
+                      Please fillup the Password Input
+                    </p>
+                  )}
                 </div>
-                {errors.ImgUrl?.type === "required" && (
-                  <p className="text-red-600 text-center text-xs font-light">
-                    {" "}
-                    Please fillup the Password Input
-                  </p>
-                )}
-              </div>
-              {/* DESCRIPTION  */}
-              <div className="pb-3 ">
-                <label className="">
-                  Description <span className="text-red-500">*</span>{" "}
-                </label>
-                <br />
-                <div
-                  className={`flex items-center border-2 border-gray-300 rounded-md ${
-                    errors.name
-                      ? "focus-within:border-red-600"
-                      : "focus-within:border-indigo-700"
-                  } py-1 pr-8 `}
-                >
-                  <MdOutlineDescription
-                    className="h-5 w-5 text-gray-400 ml-2 mr-2"
-                    aria-hidden="true"
-                  />
-                  <textarea
-                    placeholder="Write some description"
-                    {...register("description", { required: true })}
-                    className={` outline-none w-full focus:border-transparent resize-none `}
-                  />
+                {/* DESCRIPTION  */}
+                <div className="pb-3 ">
+                  <label className="">
+                    Description <span className="text-red-500">*</span>{" "}
+                  </label>
+                  <br />
+                  <div
+                    className={`flex items-center border-2 border-gray-300 rounded-md ${
+                      errors.name
+                        ? "focus-within:border-red-600"
+                        : "focus-within:border-indigo-700"
+                    } py-1 pr-8 `}
+                  >
+                    <MdOutlineDescription
+                      className="h-5 w-5 text-gray-400 ml-2 mr-2"
+                      aria-hidden="true"
+                    />
+                    <textarea
+                      placeholder="Write some description"
+                      {...register("description", { required: true })}
+                      className={` outline-none w-full focus:border-transparent resize-none `}
+                    />
+                  </div>
+                  {errors.description?.type === "required" && (
+                    <p className="text-red-600 text-center text-xs font-light ">
+                      {" "}
+                      Please fillup the email Input
+                    </p>
+                  )}
                 </div>
-                {errors.description?.type === "required" && (
-                  <p className="text-red-600 text-center text-xs font-light ">
-                    {" "}
-                    Please fillup the email Input
-                  </p>
-                )}
-              </div>
 
-              <div className="relative">
-                <button
-                  type="submit"
-                  className=" w-full text-center text-indigo-700 border border-indigo-700 bg-white p-1  mt-2  hover:bg-indigo-100 transition-all duration-150 ease-in rounded-md"
-                >
-                  {" "}
-                  Save
-                </button>
-              </div>
-            </form>
+                <div className="relative">
+                  <button
+                    type="submit"
+                    className=" w-full text-center text-indigo-700 border border-indigo-700 bg-white p-1  mt-2  hover:bg-indigo-100 transition-all duration-150 ease-in rounded-md"
+                  >
+                    {" "}
+                    Save
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>

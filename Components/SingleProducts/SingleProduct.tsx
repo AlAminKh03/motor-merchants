@@ -13,6 +13,7 @@ import { FaAddressCard } from "react-icons/fa";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AuthContext } from "../Contexts/AuthProvider";
 import { toast } from "react-hot-toast";
+import Loading from "../Loading/Loading";
 
 interface SingleProductProps {
   product: ProductProps;
@@ -29,7 +30,7 @@ const SingleProduct = ({ product }: SingleProductProps) => {
   const [value, setValue] = useState<number>(product.minOrder);
   const [subTotal, setSubTotal] = useState<number>(subTotalNumber);
   const [total, setTotal] = useState<number>(totalNumber);
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -51,6 +52,7 @@ const SingleProduct = ({ product }: SingleProductProps) => {
   const onSubmit: SubmitHandler<InputProps> = async (data, event) => {
     event?.preventDefault();
     const orderData = {
+      name: product.name,
       email: user?.email,
       address: data.address,
       phoneNumber: data.phoneNumber,
@@ -73,6 +75,9 @@ const SingleProduct = ({ product }: SingleProductProps) => {
       toast.error(`${err}`);
     }
   };
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="card card-side  grid grid-cols-1 md:grid-cols-2 items-center justify-center p-4 gap-2 ">
