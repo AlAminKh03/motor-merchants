@@ -61,7 +61,7 @@ const addProducts = () => {
 
   return (
     <PrivateRoute>
-      <div className="flex justify-center">
+      <div className="flex">
         <div className="">
           <NestedNav />
         </div>

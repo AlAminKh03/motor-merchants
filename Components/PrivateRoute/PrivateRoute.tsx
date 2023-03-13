@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../Contexts/AuthProvider";
 import Router from "next/router";
+import Loading from "../Loading/Loading";
 
 const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   const { user, loading, setLoading } = useContext(AuthContext);
@@ -18,7 +19,7 @@ const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   console.log(user);
 
   if (loading) {
-    return <p>Loading....</p>;
+    return <Loading />;
   }
 
   return null;

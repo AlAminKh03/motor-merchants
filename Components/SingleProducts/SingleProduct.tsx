@@ -280,9 +280,11 @@ const SingleProduct = ({ product }: SingleProductProps) => {
           </div>
 
           <div className="relative">
-            <div className="py-3 flex items-center justify-center gap-3 uppercase text-indigo-900 font-semibold bg-indigo-100 p-2 rounded-md hover:bg-indigo-200 mr-24 cursor-pointer">
+            <div className="py-2 flex items-center justify-center  uppercase text-indigo-900 font-semibold bg-indigo-100  rounded-md hover:bg-indigo-200 mr-24 cursor-pointer">
               <BiCartAlt className="w-4 h-4" />
-              <button type="submit">place order</button>
+              <button type="submit" className="w-28">
+                place order
+              </button>
             </div>
           </div>
         </form>

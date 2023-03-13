@@ -7,6 +7,7 @@ import { AiOutlineMail } from "react-icons/ai";
 import { AiOutlineLock } from "react-icons/ai";
 import { AuthContext } from "../Components/Contexts/AuthProvider";
 import Loading from "../Components/Loading/Loading";
+import { useRouter } from "next/router";
 
 interface Inputs {
   email: string;
@@ -21,7 +22,13 @@ const login: React.FC = (): JSX.Element => {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-
+  const router = useRouter();
+  const from = router.query.from || "/";
+  if (user?.uid) {
+    router.push({
+      pathname: `${from}`,
+    });
+  }
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
       const signingUser = await signInUser(data.email, data.password);
@@ -42,7 +49,7 @@ const login: React.FC = (): JSX.Element => {
   }
   return (
     <div
-      className="relative bg-no-repeat bg-[top_left_10rem] md:bg-[top_left_27rem] bg-cover h-screen"
+      className="relative bg-no-repeat bg-[top_left_10rem] md:bg-[top_left_27rem] bg-cover h-screen mx-0 md:mx-[200px] md:mt-0 mt-16"
       style={{
         backgroundImage: "url('/tire.jpg')",
       }}

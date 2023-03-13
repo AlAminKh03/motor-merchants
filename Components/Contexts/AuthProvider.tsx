@@ -103,9 +103,23 @@ const AuthProvider: React.FC<FunctionProps> = ({
     signInWithPopup(auth, provider)
       .then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
+
         if (credential) {
           const token = credential.accessToken;
           const user = result.user;
+          const userInfo = {
+            userName: user.displayName,
+            email: user.email,
+          };
+          fetch("http://localhost:8000/user", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(userInfo),
+          })
+            .then((res) => res.json())
+            .then((data) => console.log(data));
         }
       })
       .catch((error) => {
@@ -126,7 +140,7 @@ const AuthProvider: React.FC<FunctionProps> = ({
     });
     return () => unsbscribe();
   }, [auth]);
-
+  console.log(user);
   const authInfo = {
     createUser,
     signInUser,

@@ -30,6 +30,10 @@ const signup = () => {
     loading,
     setLoading,
   } = useContext(AuthContext);
+
+  if (user?.uid) {
+    router.push("/");
+  }
   // form submitting function
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const userData = {
@@ -72,7 +76,12 @@ const signup = () => {
     return <Loading />;
   }
   return (
-    <div className="relative">
+    <div
+      className="relative bg-no-repeat bg-[top_left_10rem] md:bg-[top_left_27rem] bg-cover h-screen mx-0 md:mx-[200px] md:mt-0 mt-16"
+      style={{
+        backgroundImage: "url('/tire.jpg')",
+      }}
+    >
       <div className="flex flex-col justify-center items-center pt-7 mx-auto ">
         <div className="pb-4">
           <p className="text-4xl font-bold text-center ">

@@ -54,9 +54,9 @@ const Navbar: React.FC = (): JSX.Element => {
     ? menuItems.filter((item) => item.content !== "LOGIN")
     : menuItems.filter((item) => item.content !== "LOGOUT");
   return (
-    <div>
+    <div className=" relative z-50">
       <div className="mx-0 md:mx-[200px] ">
-        <div className="  w-full py-2 px-5 z-40 border border-l-0 border-b-gray-200 border-r-0 ">
+        <div className=" w-full py-2 px-5 z-40 border border-l-0 border-b-gray-200 border-r-0 ">
           <div className=" hidden  md:grid grid-cols-2 ">
             <div className="flex items-center gap-2">
               <Image
