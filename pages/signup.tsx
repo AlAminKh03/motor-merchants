@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AiOutlineLock, AiOutlineMail, AiOutlineUser } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
@@ -7,6 +7,7 @@ import { AuthContext } from "../Components/Contexts/AuthProvider";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
 import Loading from "../Components/Loading/Loading";
+import useToken from "../Components/Hooks/useToken";
 
 interface Inputs {
   name: string;
@@ -15,6 +16,8 @@ interface Inputs {
 }
 
 const signup = () => {
+  const [currentUser, setCurrentUser] = useState<string>("");
+  useToken(currentUser);
   const router = useRouter();
   const {
     register,
@@ -54,6 +57,7 @@ const signup = () => {
         .then((result) => {
           console.log(result);
           setLoading(false);
+          setCurrentUser(result.email);
           toast.success(`Successfully Signed Up`, {
             duration: 5000,
           });

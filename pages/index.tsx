@@ -17,7 +17,6 @@ export interface HomeProps {
 }
 
 export default function Home({ products }: HomeProps) {
-  console.log(products);
   return (
     <div className="mx-0 md:mx-[200px]">
       <Head>

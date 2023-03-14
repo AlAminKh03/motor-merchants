@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-hot-toast";
@@ -8,6 +8,7 @@ import { AiOutlineLock } from "react-icons/ai";
 import { AuthContext } from "../Components/Contexts/AuthProvider";
 import Loading from "../Components/Loading/Loading";
 import { useRouter } from "next/router";
+import useToken from "../Components/Hooks/useToken";
 
 interface Inputs {
   email: string;
@@ -15,6 +16,11 @@ interface Inputs {
 }
 
 const login: React.FC = (): JSX.Element => {
+  const [currentUser, setCurrentUser] = useState<string>("");
+  const [token] = useToken(currentUser);
+  console.log("currentUser", currentUser);
+  console.log(token);
+
   const { signInUser, user, signInWithGoogle, loading, setLoading } =
     useContext(AuthContext);
   const {
@@ -22,6 +28,7 @@ const login: React.FC = (): JSX.Element => {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
+
   const router = useRouter();
   const from = router.query.from || "/";
   if (user?.uid) {
@@ -29,21 +36,23 @@ const login: React.FC = (): JSX.Element => {
       pathname: `${from}`,
     });
   }
+
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
       const signingUser = await signInUser(data.email, data.password);
-      console.log("from sign in user ", signingUser);
       toast.success("Successfully Logged In  :smile: ");
-      setLoading(false);
+      setCurrentUser(data.email);
     } catch (err) {
       setLoading(false);
       console.log("error", err);
       toast.error(`${err}`);
     }
   };
+
   const signInWithPopUp = () => {
     signInWithGoogle();
   };
+
   if (loading) {
     return <Loading />;
   }

@@ -94,7 +94,7 @@ const SingleProduct = ({ product }: SingleProductProps) => {
           </div>
           <div className="">
             <h2 className="font-bold text-black">{product.name}</h2>
-            <p className="text-gray-500 text-sm ">{`${product.description
+            <p className="text-gray-500 text-sm ">{`${product?.description
               .split(" ")
               .slice(0, 12)
               .join(" ")}...`}</p>
