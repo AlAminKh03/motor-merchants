@@ -17,7 +17,7 @@ interface Inputs {
 
 const signup = () => {
   const [currentUser, setCurrentUser] = useState<string>("");
-  useToken(currentUser);
+  const [token] = useToken(currentUser);
   const router = useRouter();
   const {
     register,
@@ -34,8 +34,8 @@ const signup = () => {
     setLoading,
   } = useContext(AuthContext);
 
-  if (user?.uid) {
-    router.push("/");
+  if (token) {
+    router.push("/verifyEmail");
   }
   // form submitting function
   const onSubmit: SubmitHandler<Inputs> = async (data) => {

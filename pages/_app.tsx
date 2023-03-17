@@ -14,7 +14,7 @@ const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <div className={`${PT.className} `}>
+    <div className={`${PT.className} bg-white`}>
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
           <Toaster />

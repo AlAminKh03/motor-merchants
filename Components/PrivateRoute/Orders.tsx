@@ -6,7 +6,6 @@ import { AuthContext } from "../Contexts/AuthProvider";
 import Loading from "../Loading/Loading";
 import { MdDeleteForever } from "react-icons/md";
 import Swal from "sweetalert2";
-import { QueryObserverResult } from "@tanstack/query-core/build/lib/types";
 
 interface OrdersProps {
   order: OrderProps[];
@@ -28,11 +27,23 @@ const Orders = ({ order, refetch }: OrdersProps) => {
       if (result.isConfirmed) {
         fetch(`http://localhost:8000/order/${id}`, {
           method: "DELETE",
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
         })
           .then((res) => res.json())
           .then((data) => {
-            Swal.fire("Deleted!", "Your file has been deleted.", "success");
-            refetch();
+            console.log(data);
+            if (!data.message) {
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+              refetch();
+            } else {
+              Swal.fire("Error!", "delete failed", "error");
+              refetch();
+            }
+          })
+          .catch((err) => {
+            console.log(err);
           });
       }
     });
@@ -72,7 +83,7 @@ const Orders = ({ order, refetch }: OrdersProps) => {
                       <br />
                     </td>
                     <td className="border px-4 py-2 text-center">
-                      {singleOrder.price && (
+                      {singleOrder.price && !singleOrder.paid && (
                         <Link
                           href={`dashboard/payment/${singleOrder._id}`}
                           className="bg-green-600 p-1 px-2 text-white rounded-md "
@@ -80,9 +91,9 @@ const Orders = ({ order, refetch }: OrdersProps) => {
                           pay
                         </Link>
                       )}
-                      {/* {booking.price && booking.paid && (
+                      {singleOrder.price && singleOrder.paid && (
                         <p className="text-green-600">PAID</p>
-                      )} */}
+                      )}
                     </td>
                     <td className=" flex justify-center px-4 py-2">
                       <button onClick={() => openModal(singleOrder._id)}>

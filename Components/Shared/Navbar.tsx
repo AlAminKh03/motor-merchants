@@ -17,13 +17,15 @@ const Navbar: React.FC = (): JSX.Element => {
   const router = useRouter();
   const { user, signOutUser, loading, setLoading } = useContext(AuthContext);
 
-  const handleSignOut = () => {
-    signOutUser();
-    setLoading(false);
-  };
   if (loading) {
     return <Loading />;
   }
+  const handleSignOut = () => {
+    localStorage.clear();
+    signOutUser();
+    setLoading(false);
+  };
+
   const menuItems: MenuItems[] = [
     {
       path: "/",
@@ -56,7 +58,7 @@ const Navbar: React.FC = (): JSX.Element => {
   return (
     <div className=" relative z-50">
       <div className="mx-0 md:mx-[200px] ">
-        <div className=" w-full py-2 px-5 z-40 border border-l-0 border-b-gray-200 border-r-0 ">
+        <div className=" w-full py-1 px-5 z-40 border border-l-0 border-b-gray-200 border-r-0 ">
           <div className=" hidden  md:grid grid-cols-2 ">
             <div className="flex items-center gap-2">
               <Image
@@ -75,39 +77,46 @@ const Navbar: React.FC = (): JSX.Element => {
                 </p>
               </div>
             </div>
-            <div className="flex justify-around pt-5">
-              {filteredMenuItems.map(
-                (menuItem: { content: string; path: string }) => {
-                  return (
-                    <div key={menuItem.content}>
-                      <Link
-                        href={`${menuItem.path}`}
-                        className={`text-sm text-gray-600 hover:text-black hover:transition-all ease-in duration-100 tracking-widest cursor-pointer font-bold ${
-                          menuItem.content === "LOGIN"
-                            ? "border bg-black rounded-md text-white p-2 hover:bg-gray-200 hover:text-black"
-                            : null
-                        } ${
-                          menuItem.content === "LOGOUT"
-                            ? "border bg-red-500 rounded-md text-white p-2 hover:bg-gray-200 hover:text-black"
-                            : null
-                        } ${
-                          router.pathname === menuItem.path
-                            ? "border-b  border-indigo-800 pb-2 text-indigo-700 "
-                            : ""
-                        }
-                    `}
-                        onClick={() => {
-                          if (menuItem.content === "LOGOUT") {
-                            handleSignOut();
+            <div className="flex flex-col">
+              <div className="md:flex justify-end mr-4 hidden pt-1 ">
+                <p className=" text-xs font-bold  bg-indigo-200 text-indigo-900 uppercase rounded-2xl px-1 ">
+                  {user?.displayName ? user?.displayName : "GUEST"}
+                </p>
+              </div>
+              <div className="flex justify-around mt-[1.3rem]">
+                {filteredMenuItems.map(
+                  (menuItem: { content: string; path: string }) => {
+                    return (
+                      <div key={menuItem.content}>
+                        <Link
+                          href={`${menuItem.path}`}
+                          className={`text-sm text-gray-600  hover:text-black hover:transition-all ease-in duration-100 tracking-widest cursor-pointer font-bold ${
+                            menuItem.content === "LOGIN"
+                              ? "border bg-black rounded-md text-white p-[0.6rem] hover:bg-gray-200 hover:text-black"
+                              : null
+                          } ${
+                            menuItem.content === "LOGOUT"
+                              ? " bg-red-500 rounded-md text-white p-[0.6rem] hover:bg-gray-200 hover:text-black"
+                              : null
+                          } ${
+                            router.pathname === menuItem.path
+                              ? "border-b-2  border-indigo-800 pb-[0.6rem] text-indigo-700 "
+                              : ""
                           }
-                        }}
-                      >
-                        {menuItem.content}
-                      </Link>
-                    </div>
-                  );
-                }
-              )}
+                      `}
+                          onClick={() => {
+                            if (menuItem.content === "LOGOUT") {
+                              handleSignOut();
+                            }
+                          }}
+                        >
+                          {menuItem.content}
+                        </Link>
+                      </div>
+                    );
+                  }
+                )}
+              </div>
             </div>
           </div>
           {/* for mobile  */}

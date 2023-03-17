@@ -1,12 +1,14 @@
 import { GetStaticProps } from "next";
-import React from "react";
+import React, { useContext } from "react";
 import { User } from "../../pages/dashboard/manageUsers";
+import { AuthContext } from "../Contexts/AuthProvider";
 
 interface UserProps {
   users: User[];
 }
 
 const ManageUser = ({ users }: UserProps) => {
+  const { user } = useContext(AuthContext);
   return (
     <div>
       <div className="overflow-x-auto  mt-5">
@@ -20,13 +22,26 @@ const ManageUser = ({ users }: UserProps) => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user: User, i: number) => {
+            {users.map((singleuser: User, i: number) => {
               return (
-                <React.Fragment key={user._id}>
+                <React.Fragment key={singleuser._id}>
                   <tr className="border text-center">
                     <th className="border px-4 py-2">{i + 1}</th>
-                    <td className="border px-4 py-2">{user.userName}</td>
-                    <td className="border px-4 py-2">{user.email}</td>
+                    <td className="border px-4 py-2">{singleuser.userName}</td>
+                    <td className="border px-4 py-2">
+                      {singleuser.email}
+                      {user?.emailVerified ? (
+                        <span className="bg-indigo-100 text-indigo-800 text-xs font-bold rounded-xl">
+                          {" "}
+                          VERIFIED{" "}
+                        </span>
+                      ) : (
+                        <span className="bg-red-100 text-red-800 text-xs font-bold rounded-xl">
+                          {" "}
+                          NOT VERIFIED{" "}
+                        </span>
+                      )}
+                    </td>
                     <td className="border px-4 py-2">
                       {/* {user.role ? (
                         <p className="text-gray-500 text-xs">ADMIN</p>

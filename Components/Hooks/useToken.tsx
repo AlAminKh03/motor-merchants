@@ -3,9 +3,8 @@ import { toast } from "react-hot-toast";
 
 const useToken = (email: string) => {
   const [token, setToken] = useState<string>("");
-  console.log("from outsdie of token function ", email);
-  if (email) {
-    useEffect(() => {
+  useEffect(() => {
+    if (email) {
       console.log("from inside of token function ", email);
       fetch(`http://localhost:8000/user/getJwt?email=${email}`)
         .then((res) => res.json())
@@ -14,16 +13,14 @@ const useToken = (email: string) => {
             const accessToken = data.accessToken;
             localStorage.setItem("accessToken", accessToken);
             setToken(accessToken);
-            console.log("token from inside", token);
           }
         })
         .catch((err) => {
-          console.log(err);
           toast.error(`${err}`);
         });
-    }, [email]);
-  }
-  console.log("token", token);
+    }
+  }, [email]);
+
   return [token];
 };
 

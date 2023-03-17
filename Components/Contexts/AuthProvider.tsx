@@ -13,6 +13,8 @@ import {
   UserCredential,
 } from "firebase/auth";
 import app from "../../firebase.config";
+import useToken from "../Hooks/useToken";
+import { useRouter } from "next/router";
 
 interface FunctionProps {
   children: React.ReactNode;
@@ -52,8 +54,6 @@ export const AuthContext = createContext({
         if (credential) {
           const token = credential.accessToken;
           const user = result.user;
-          console.log("form google", token);
-          console.log("form google", user);
         }
       })
       .catch((error) => {
@@ -73,7 +73,11 @@ const AuthProvider: React.FC<FunctionProps> = ({
   children: React.ReactNode;
 }): JSX.Element => {
   const [user, setUser] = useState<any>();
+  const [googleUser, setGoolseUser] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
+
+  const token = useToken(user?.email);
+
   // for signing up [DONE]
   const createUser = async (email: string, password: string) => {
     setLoading(true);
@@ -100,6 +104,7 @@ const AuthProvider: React.FC<FunctionProps> = ({
     }
   };
   const signInWithGoogle = () => {
+    setLoading(true);
     signInWithPopup(auth, provider)
       .then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -119,12 +124,17 @@ const AuthProvider: React.FC<FunctionProps> = ({
             body: JSON.stringify(userInfo),
           })
             .then((res) => res.json())
-            .then((data) => console.log(data));
+            .then((data) => {
+              user.email && setGoolseUser(user.email);
+            })
+            .catch((err) => {
+              console.log("err", err);
+            });
         }
       })
       .catch((error) => {
         const credential = GoogleAuthProvider.credentialFromError(error);
-        console.log(error);
+        console.log("error", error);
       });
   };
   // signingOut User

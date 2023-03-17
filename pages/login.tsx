@@ -17,21 +17,20 @@ interface Inputs {
 
 const login: React.FC = (): JSX.Element => {
   const [currentUser, setCurrentUser] = useState<string>("");
-  const [token] = useToken(currentUser);
-  console.log("currentUser", currentUser);
-  console.log(token);
 
   const { signInUser, user, signInWithGoogle, loading, setLoading } =
     useContext(AuthContext);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
 
+  const [token] = useToken(currentUser);
   const router = useRouter();
   const from = router.query.from || "/";
-  if (user?.uid) {
+  if (token) {
     router.push({
       pathname: `${from}`,
     });
@@ -51,11 +50,13 @@ const login: React.FC = (): JSX.Element => {
 
   const signInWithPopUp = () => {
     signInWithGoogle();
+    setLoading(false);
   };
 
   if (loading) {
     return <Loading />;
   }
+
   return (
     <div
       className="relative bg-no-repeat bg-[top_left_10rem] md:bg-[top_left_27rem] bg-cover h-screen mx-0 md:mx-[200px] md:mt-0 mt-16"

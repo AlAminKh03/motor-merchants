@@ -12,7 +12,7 @@ const history = (props: Props) => {
         <div>
           <NestedNav />
         </div>
-        <div className="relative mx-auto pt-10 lg:pt-0 ">
+        <div className="relative mx-auto pt-10 lg:pt-0 h-screen ">
           <Construction />
         </div>
       </div>

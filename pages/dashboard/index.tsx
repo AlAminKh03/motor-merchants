@@ -14,6 +14,7 @@ export interface OrderProps {
   phoneNumber: string;
   price: number;
   quantity: number;
+  paid: boolean;
 }
 
 const index = () => {
@@ -34,25 +35,33 @@ const index = () => {
     queryKey: ["order"],
     queryFn: async () => {
       const response = await fetch(
-        `http://localhost:8000/order/${user?.email}`
+        `http://localhost:8000/order/${user?.email}`,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
       );
       const data = response.json();
+
       return data;
     },
   });
   if (isLoading) {
+    refetch();
     return <Loading />;
   }
   if (loading) {
     return <Loading />;
   }
+  refetch();
   return (
     <PrivateRoute>
       <div className="flex ">
         <div>
           <NestedNav />
         </div>
-        <div className="relative mx-auto lg:pt-0 ">
+        <div className="relative mx-auto lg:pt-0 h-screen">
           <p className="text-sm font-bold pt-2">
             Ordered email : {user?.email}
           </p>
