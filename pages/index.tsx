@@ -4,6 +4,8 @@ import Products from "../Components/Home/Products";
 import { GetStaticProps } from "next";
 import Service from "../Components/Home/Service";
 import Customer from "../Components/Home/Customer";
+import Brand from "../Components/Home/Brand";
+import FAQ from "../Components/Home/FAQ";
 
 export interface ProductProps {
   _id: string;
@@ -30,6 +32,8 @@ export default function Home({ products }: HomeProps) {
       <Products products={products} />
       <Service />
       <Customer />
+      <Brand />
+      <FAQ />
     </div>
   );
 }

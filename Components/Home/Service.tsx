@@ -6,11 +6,11 @@ type Props = {};
 
 const Service = (props: Props) => {
   return (
-    <div className="flex relative md:flex-row flex-col mt-20  pb-20 bg-white">
-      <div className="z-10 static md:absolute pb-10">
+    <div className="flex relative  items-center lg:items-start lg:flex-row flex-col mt-20  pb-20 bg-white">
+      <div className="z-10 static md:static lg:absolute pb-10">
         <Image src="/car.png" alt="Car pic" width={600} height={500} />
       </div>
-      <div className=" ml-auto md:ml-[20rem] w-[380px] h-[320px] mx-auto md:w-[550px] md:h-[300px] bg-yellow-100 ">
+      <div className="  mx-auto lg:ml-[20rem] w-[380px] h-[320px] md:w-[550px] md:h-[300px] bg-yellow-100 ">
         <div className="md:px-5 md:py-2 px-3 py-3 ">
           <p className="font-bold text-3xl text-black text-left">
             Not just selling the Parts

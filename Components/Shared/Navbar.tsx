@@ -59,24 +59,27 @@ const Navbar: React.FC = (): JSX.Element => {
     <div className=" relative z-50">
       <div className="mx-0 md:mx-[200px] ">
         <div className=" w-full py-1 px-5 z-40 border border-l-0 border-b-gray-200 border-r-0 ">
-          <div className=" hidden  md:grid grid-cols-2 ">
-            <div className="flex items-center gap-2">
-              <Image
-                src="/favicon.ico"
-                alt="logo pic"
-                width="70"
-                height="70"
-                className="text-indigo-500"
-              />
-              <div>
-                <p className="tracking-wide text-xl font-semibold text-indigo-700">
-                  Motor Merchants
-                </p>{" "}
-                <p className=" uppercase text-xs text-indigo-700">
-                  Heart of Automobiles
-                </p>
+          <div className=" hidden  lg:grid grid-cols-2 ">
+            <Link href={"/"}>
+              <div className="flex items-center gap-2">
+                <Image
+                  src="/favicon.ico"
+                  alt="logo pic"
+                  width="70"
+                  height="70"
+                  className="text-indigo-500"
+                />
+                <div>
+                  <p className="tracking-wide text-xl font-semibold text-indigo-700">
+                    Motor Merchants
+                  </p>{" "}
+                  <p className=" uppercase text-xs text-indigo-700">
+                    Heart of Automobiles
+                  </p>
+                </div>
               </div>
-            </div>
+            </Link>
+
             <div className="flex flex-col">
               <div className="md:flex justify-end mr-4 hidden pt-1 ">
                 <p className=" text-xs font-bold  bg-indigo-200 text-indigo-900 uppercase rounded-2xl px-1 ">
@@ -120,24 +123,28 @@ const Navbar: React.FC = (): JSX.Element => {
             </div>
           </div>
           {/* for mobile  */}
-          <div className="sm:block md:hidden fixed z-30 top-0 left-0 w-full ">
+          <div className="sm:block lg:hidden fixed z-30 top-0 left-0 w-full ">
             <div className=" flex bg-white justify-around sticky min-w-full  px-5 gap-48 py-3 top-0 z-20">
               <div className="grow ">
-                <div className="flex items-center gap-2">
-                  <Image
-                    src="/favicon.ico"
-                    alt="logo pic"
-                    width="40"
-                    height="40"
-                    className="text-indigo-500"
-                  />
-                  <div>
-                    <p className=" text-sx  text-indigo-700">Motor Merchants</p>{" "}
-                    <p className=" uppercase text-[0.3rem] text-indigo-700">
-                      Heart of Automobiles
-                    </p>
+                <Link href={"/"}>
+                  <div className="flex items-center gap-2">
+                    <Image
+                      src="/favicon.ico"
+                      alt="logo pic"
+                      width="40"
+                      height="40"
+                      className="text-indigo-500"
+                    />
+                    <div>
+                      <p className=" text-sx  text-indigo-700">
+                        Motor Merchants
+                      </p>{" "}
+                      <p className=" uppercase text-[0.3rem] text-indigo-700">
+                        Heart of Automobiles
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
               <div className="">
                 {openMenuNav ? (
