@@ -60,14 +60,17 @@ const SingleProduct = ({ product }: SingleProductProps) => {
       price: total,
     };
     try {
-      const response = await fetch("http://localhost:8000/order", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-        body: JSON.stringify(orderData),
-      });
+      const response = await fetch(
+        "https://motor-merchants-server.vercel.app/order",
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+          body: JSON.stringify(orderData),
+        }
+      );
       const data = await response.json();
       console.log(data);
       toast.success("Order successfull ,for payment got to the dashboard");

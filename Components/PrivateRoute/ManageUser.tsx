@@ -12,7 +12,7 @@ const ManageUser = ({ users, refetch }: UserProps) => {
   const { loading } = useContext(AuthContext);
 
   const makeAdmin = (id: string) => {
-    fetch(`http://localhost:8000/user/admin/${id}`, {
+    fetch(`https://motor-merchants-server.vercel.app/user/admin/${id}`, {
       method: "PATCH",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,

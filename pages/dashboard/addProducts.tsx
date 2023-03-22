@@ -43,7 +43,7 @@ const addProducts = () => {
       available: data.available,
     };
     console.log(productData);
-    fetch("http://localhost:8000/products", {
+    fetch("https://motor-merchants-server.vercel.app/products", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -63,7 +63,7 @@ const addProducts = () => {
   return (
     <PrivateRoute>
       <AdminROute>
-        <div className="flex">
+        <div className="flex mt-20">
           <div className="">
             <NestedNav />
           </div>

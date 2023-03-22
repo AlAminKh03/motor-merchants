@@ -10,7 +10,7 @@ interface SingleProductProps {
 
 const productDetails = ({ product }: SingleProductProps) => {
   return (
-    <div className="mx-0 md:mx-[200px]">
+    <div className="mx-0 md:mx-[200px] mt-20">
       <PrivateRoute>
         <SingleProduct product={product} />
       </PrivateRoute>
@@ -26,7 +26,9 @@ export const getStaticProps: GetStaticProps = async ({
   props: SingleProductProps;
 }> => {
   const id = params;
-  const response = await fetch(`http://localhost:8000/products/${id?.id}`);
+  const response = await fetch(
+    `https://motor-merchants-server.vercel.app/products/${id?.id}`
+  );
   const product = await response.json();
   return {
     props: {
@@ -37,7 +39,9 @@ export const getStaticProps: GetStaticProps = async ({
 
 export const getStaticPaths: GetStaticPaths = async () => {
   // Fetch the list of product IDs from your API
-  const response = await fetch("http://localhost:8000/products");
+  const response = await fetch(
+    "https://motor-merchants-server.vercel.app/products"
+  );
   const products = await response.json();
   const paths = products.map((product: ProductProps) => ({
     params: { id: product._id },

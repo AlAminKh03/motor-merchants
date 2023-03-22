@@ -26,13 +26,16 @@ const CheckOut = ({ clientInformation }: ProductInformationProp) => {
   const { _id, price, email, name } = clientInformation;
   console.log(price);
   useEffect(() => {
-    fetch("http://localhost:8000/payment/create-payment-intent", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ price: price }),
-    })
+    fetch(
+      "https://motor-merchants-server.vercel.app/payment/create-payment-intent",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ price: price }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data.clientSecret);
@@ -86,7 +89,7 @@ const CheckOut = ({ clientInformation }: ProductInformationProp) => {
         productId: _id,
         transitionId: paymentIntent.id,
       };
-      fetch("http://localhost:8000/payment", {
+      fetch("https://motor-merchants-server.vercel.app/payment", {
         method: "POST",
         headers: {
           "content-type": "application/json",

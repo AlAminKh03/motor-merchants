@@ -8,7 +8,7 @@ const verifyEmail = (props: Props) => {
   const { user } = useContext(AuthContext);
   return (
     <div
-      className="relative bg-no-repeat bg-[top_left_10rem] md:bg-[top_left_27rem] bg-cover h-screen"
+      className="relative bg-no-repeat bg-[top_left_10rem] md:bg-[top_left_27rem] bg-cover h-screen mt-20"
       style={{
         backgroundImage: "url('/tire.jpg')",
       }}

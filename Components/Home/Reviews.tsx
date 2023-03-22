@@ -18,7 +18,7 @@ interface ReviewProps {
 const Reviews = (props: Props) => {
   const [reviews, setReviews] = useState<ReviewProps[]>([]);
   useEffect(() => {
-    fetch("http://localhost:8000/review")
+    fetch("https://motor-merchants-server.vercel.app/review")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -61,7 +61,7 @@ const Reviews = (props: Props) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 4000,
     pauseOnHover: true,
   };
   return (
@@ -111,11 +111,11 @@ const Reviews = (props: Props) => {
                     </div>
                   )}
 
-                  <div className="flex flex-col justify-center text-blue-700">
-                    <p className="font-bold text-sm lg:text-base">
+                  <div className="flex flex-col justify-center ">
+                    <p className="text-black font-bold text-sm lg:text-lg font-[VT323]">
                       {review.name}
                     </p>
-                    <p className="text-xs text-blue-500">{review.email}</p>
+                    <p className="text-xs text-gray-500">{review.email}</p>
                   </div>
                 </div>
               </div>

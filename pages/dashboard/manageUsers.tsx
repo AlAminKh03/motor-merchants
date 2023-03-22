@@ -22,7 +22,9 @@ const manageUsers = () => {
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const response = await fetch("http://localhost:8000/users");
+      const response = await fetch(
+        "https://motor-merchants-server.vercel.app/users"
+      );
       const data = response.json();
       return data;
     },
@@ -33,7 +35,7 @@ const manageUsers = () => {
   return (
     <PrivateRoute>
       <AdminROute>
-        <div className="flex  ">
+        <div className="flex lg:mt-20 mt-10 ">
           <div className="">
             <NestedNav />
           </div>

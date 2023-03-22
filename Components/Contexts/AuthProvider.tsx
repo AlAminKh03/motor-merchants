@@ -120,7 +120,7 @@ const AuthProvider: React.FC<FunctionProps> = ({
             userName: user.displayName,
             email: user.email,
           };
-          fetch("http://localhost:8000/user", {
+          fetch("https://motor-merchants-server.vercel.app/user", {
             method: "POST",
             headers: {
               "content-type": "application/json",

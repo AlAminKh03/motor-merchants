@@ -43,7 +43,9 @@ export default function Home({ products }: HomeProps) {
 export const getStaticProps: GetStaticProps = async (): Promise<{
   props: HomeProps;
 }> => {
-  const data = await fetch("http://localhost:8000/products");
+  const data = await fetch(
+    "https://motor-merchants-server.vercel.app/products"
+  );
   const products = await data.json();
   return {
     props: { products },

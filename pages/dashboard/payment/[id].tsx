@@ -23,7 +23,7 @@ const Id = () => {
   const router = useRouter();
   const { id } = router.query;
   useEffect(() => {
-    fetch(`http://localhost:8000/orders/${id}`, {
+    fetch(`https://motor-merchants-server.vercel.app/orders/${id}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
@@ -39,7 +39,7 @@ const Id = () => {
   }, [id]);
 
   return (
-    <div className=" relative top-12 ml-0 md:ml-10 pb-10 h-screen">
+    <div className=" relative top-12 ml-0 md:ml-10 pb-10 h-screen mt-20">
       <div className="flex flex-row-reverse  mx-auto justify-center items-center">
         <div className="relative w-[550px] h-[450px] hidden md:block">
           <Image src={"/card.png"} alt="Card img" fill className="grow " />

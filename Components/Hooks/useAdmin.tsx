@@ -7,7 +7,7 @@ const useAdmin = (email: string) => {
   const [isAdminLoading, setIsAdminLoading] = useState<boolean>(true);
   useEffect(() => {
     if (email) {
-      fetch(`http://localhost:8000/user/admin/${email}`)
+      fetch(`https://motor-merchants-server.vercel.app/user/admin/${email}`)
         .then((res) => res.json())
         .then((data) => {
           setIsAdmin(data.isAdmin);

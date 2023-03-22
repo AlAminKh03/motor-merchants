@@ -7,7 +7,7 @@ type Props = {};
 const myProfile = (props: Props) => {
   return (
     <PrivateRoute>
-      <div className="flex ">
+      <div className="flex mt-20">
         <div>
           <NestedNav />
         </div>

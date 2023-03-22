@@ -46,7 +46,7 @@ const signup = () => {
     try {
       const creatingUser = await createUser(data.email, data.password);
       const userInfo = await manageUser({ displayName: data.name });
-      fetch("http://localhost:8000/user", {
+      fetch("https://motor-merchants-server.vercel.app/user", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -66,7 +66,7 @@ const signup = () => {
         .catch((err) => console.log(err));
 
       // if(user.emailVerified){
-      //   fetch(`http://localhost:8000/user/${}`);
+      //   fetch(`https://motor-merchants-server.vercel.app/user/${}`);
       // }
     } catch (error) {
       setLoading(false);
@@ -81,7 +81,7 @@ const signup = () => {
   }
   return (
     <div
-      className="relative bg-no-repeat bg-[top_left_10rem] md:bg-[top_left_27rem] bg-cover h-screen mx-0 md:mx-[200px] md:mt-0 mt-16"
+      className="relative bg-no-repeat bg-[top_left_10rem] md:bg-[top_left_27rem] bg-cover h-screen mx-0 md:mx-[200px] md:mt-20 mt-16"
       style={{
         backgroundImage: "url('/tire.jpg')",
       }}

@@ -59,7 +59,7 @@ const login: React.FC = (): JSX.Element => {
 
   return (
     <div
-      className="relative bg-no-repeat bg-[top_left_10rem] md:bg-[top_left_27rem] bg-cover h-screen mx-0 md:mx-[200px] md:mt-0 mt-16"
+      className="relative bg-no-repeat bg-[top_left_10rem] md:bg-[top_left_27rem] bg-cover h-screen mx-0 md:mx-[200px] md:mt-20 mt-16"
       style={{
         backgroundImage: "url('/tire.jpg')",
       }}

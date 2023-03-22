@@ -24,7 +24,7 @@ const Reviews = (props: Props) => {
       comment: comment,
       imgUrl: PhotoURL,
     };
-    fetch("http://localhost:8000/review", {
+    fetch("https://motor-merchants-server.vercel.app/review", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -55,11 +55,11 @@ const Reviews = (props: Props) => {
     <div>
       <form onSubmit={handleSubmit}>
         <div>
-          <p className="text-2xl text-black font-bold">
+          <p className="lg:text-2xl text-xl text-black font-bold mt-2">
             Publish your comment to the world about us:{" "}
           </p>
           <div>
-            <p className="font-bold text-2xl border p-1 bg-indigo-100 border-indigo-500 mr-40 text-center rounded-md w-[300px] border-b-black border-r-black  border-b-4 border-r-4 my-2">
+            <p className="font-bold lg:text-2xl text-xl border p-1 bg-indigo-100 border-indigo-500 mr-40 text-center rounded-md lg:w-[300px]  w-[200px] border-b-black border-r-black  border-b-4 border-r-4 my-2">
               {user.displayName}
             </p>
             <p className="font-bold  text-gray-700 underline">

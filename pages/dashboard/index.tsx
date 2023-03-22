@@ -22,7 +22,7 @@ const index = () => {
   const { user, loading } = useContext(AuthContext);
   // const [order, setOrder] = useState<OrderProps[]>([]);
   // useEffect(() => {
-  //   fetch(`http://localhost:8000/order/${user?.email}`)
+  //   fetch(`https://motor-merchants-server.vercel.app/order/${user?.email}`)
   //     .then((res) => res.json())
   //     .then((data) => {
   //       setOrder(data);
@@ -36,7 +36,7 @@ const index = () => {
     queryKey: ["order"],
     queryFn: async () => {
       const response = await fetch(
-        `http://localhost:8000/order/${user?.email}`,
+        `https://motor-merchants-server.vercel.app/order/${user?.email}`,
         {
           headers: {
             authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -48,17 +48,17 @@ const index = () => {
       return data;
     },
   });
+
+  refetch();
   if (isLoading) {
-    refetch();
     return <Loading />;
   }
   if (loading) {
     return <Loading />;
   }
-  refetch();
   return (
     <PrivateRoute>
-      <div className="flex ">
+      <div className="flex lg:mt-20 mt-10">
         <div>
           <NestedNav />
         </div>

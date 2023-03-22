@@ -47,7 +47,7 @@ const NestedNav = (props: Props) => {
         )}
       </div>
       <div
-        className={` md:block   h-screen  bg-gray-50 w-[190px]  md:w-[250px] md:pl-10 ${
+        className={` md:block  h-screen  bg-gray-50 w-[190px]  md:w-[250px] md:pl-10 ${
           openNestedNav
             ? "hidden transition-all ease-in duration-500"
             : "h-screen -mt-12 lg:-mt-10 pt-6  sticky z-10 transition-all ease-in duration-500 "
@@ -120,7 +120,7 @@ const NestedNav = (props: Props) => {
           )}
           <li
             className={`flex flex-col items-center justify-center ${
-              isAdmin ? "mt-[12rem] " : "mt-[16rem]"
+              isAdmin ? "mt-[11rem] " : "mt-[15rem]"
             }`}
           >
             <div
