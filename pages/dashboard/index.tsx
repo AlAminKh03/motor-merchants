@@ -16,6 +16,7 @@ export interface OrderProps {
   quantity: number;
   paid: boolean;
 }
+[];
 
 const index = () => {
   const { user, loading } = useContext(AuthContext);
@@ -28,7 +29,7 @@ const index = () => {
   //     });
   // }, [user?.email, loading]);
   const {
-    data: order,
+    data: order = [],
     isLoading,
     refetch,
   } = useQuery({
@@ -61,11 +62,11 @@ const index = () => {
         <div>
           <NestedNav />
         </div>
-        <div className="relative mx-auto lg:pt-0 h-screen">
+        <div className="relative mx-auto lg:mr-[220px] pt-14 lg:pt-0 h-screen">
           <p className="text-sm font-bold pt-2">
             Ordered email : {user?.email}
           </p>
-          <Orders order={order} refetch={refetch} />
+          <Orders order={order} refetch={refetch} isLoading={isLoading} />
         </div>
       </div>
     </PrivateRoute>

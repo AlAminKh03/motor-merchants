@@ -1,17 +1,17 @@
 import React, { useContext } from "react";
 import PrivateRoute from "../../Components/PrivateRoute/PrivateRoute";
 import NestedNav from "../../Components/PrivateRoute/NestedNav";
+import ManageUser from "../../Components/PrivateRoute/ManageUser";
+import AdminROute from "../../Components/PrivateRoute/AdminRoute";
 import { AuthContext } from "../../Components/Contexts/AuthProvider";
 import Loading from "../../Components/Loading/Loading";
-import { GetStaticProps } from "next";
-import ManageUser from "../../Components/PrivateRoute/ManageUser";
 import { useQuery } from "@tanstack/react-query";
-import AdminROute from "../../Components/PrivateRoute/AdminRoute";
 
 export interface User {
   _id: string;
   email: string;
   userName: string;
+  role: string;
 }
 interface UserProps {
   user: User[];
@@ -19,28 +19,14 @@ interface UserProps {
 
 const manageUsers = () => {
   const { loading } = useContext(AuthContext);
-  const {
-    data: user,
-    isLoading,
-    refetch,
-  } = useQuery({
+  const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const response = await fetch("http://localhost:8000/user", {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      });
-      const data = await response.json();
+      const response = await fetch("http://localhost:8000/users");
+      const data = response.json();
       return data;
     },
   });
-  console.log(user);
-
-  if (isLoading) {
-    return <Loading />;
-  }
-
   if (loading) {
     return <Loading />;
   }
@@ -52,7 +38,7 @@ const manageUsers = () => {
             <NestedNav />
           </div>
           <div className="relative mx-auto pt-10 lg:pt-0 h-screen">
-            <ManageUser users={user} />
+            <ManageUser users={users} refetch={refetch} />
           </div>
         </div>
       </AdminROute>

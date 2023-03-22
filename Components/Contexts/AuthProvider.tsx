@@ -11,6 +11,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   UserCredential,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import app from "../../firebase.config";
 import useToken from "../Hooks/useToken";
@@ -62,6 +63,9 @@ export const AuthContext = createContext({
   },
   signOutUser: () => {
     return signOut(auth);
+  },
+  resetPassword: (email: string) => {
+    return sendPasswordResetEmail(auth, email);
   },
   loading: true,
   setLoading: (value: boolean) => {},
@@ -142,6 +146,12 @@ const AuthProvider: React.FC<FunctionProps> = ({
     setLoading(true);
     return signOut(auth);
   };
+
+  // resetting password
+  const resetPassword = (email: string) => {
+    setLoading(true);
+    return sendPasswordResetEmail(auth, email);
+  };
   // persisting Users  [DONE]
   useEffect(() => {
     const unsbscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -160,6 +170,7 @@ const AuthProvider: React.FC<FunctionProps> = ({
     signInWithGoogle,
     loading,
     setLoading,
+    resetPassword,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

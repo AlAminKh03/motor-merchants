@@ -57,9 +57,9 @@ const Navbar: React.FC = (): JSX.Element => {
     : menuItems.filter((item) => item.content !== "LOGOUT");
   return (
     <div className=" relative z-50">
-      <div className="mx-0 md:mx-[200px] ">
-        <div className=" w-full py-1 px-5 z-40 border border-l-0 border-b-gray-200 border-r-0 ">
-          <div className=" hidden  lg:grid grid-cols-2 ">
+      <div className="mx-0  ">
+        <div className=" w-full z-40 ">
+          <div className=" hidden w-[75%] py-1  bg-white lg:grid grid-cols-2  top-0 lg:fixed border-b-2 mx-[170px]">
             <Link href={"/"}>
               <div className="flex items-center gap-2">
                 <Image
@@ -80,7 +80,7 @@ const Navbar: React.FC = (): JSX.Element => {
               </div>
             </Link>
 
-            <div className="flex flex-col">
+            <div className="flex flex-col -mr-4">
               <div className="md:flex justify-end mr-4 hidden pt-1 ">
                 <p className=" text-xs font-bold  bg-indigo-200 text-indigo-900 uppercase rounded-2xl px-1 ">
                   {user?.displayName ? user?.displayName : "GUEST"}

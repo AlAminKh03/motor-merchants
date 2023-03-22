@@ -10,9 +10,10 @@ import Swal from "sweetalert2";
 interface OrdersProps {
   order: OrderProps[];
   refetch: any;
+  isLoading: boolean;
 }
 
-const Orders = ({ order, refetch }: OrdersProps) => {
+const Orders = ({ order, refetch, isLoading }: OrdersProps) => {
   const { user, loading } = useContext(AuthContext);
   const openModal = (id: string) => {
     Swal.fire({
@@ -49,7 +50,7 @@ const Orders = ({ order, refetch }: OrdersProps) => {
     });
   };
 
-  if (loading) {
+  if (loading || isLoading) {
     return <Loading />;
   }
   return (
@@ -67,7 +68,7 @@ const Orders = ({ order, refetch }: OrdersProps) => {
             </tr>
           </thead>
           <tbody>
-            {order.map((singleOrder: OrderProps, i: number) => {
+            {order?.map((singleOrder: OrderProps, i: number) => {
               return (
                 <React.Fragment key={singleOrder._id}>
                   <tr className="border">
@@ -96,8 +97,17 @@ const Orders = ({ order, refetch }: OrdersProps) => {
                       )}
                     </td>
                     <td className=" flex justify-center px-4 py-2">
-                      <button onClick={() => openModal(singleOrder._id)}>
-                        <MdDeleteForever className="text-red-500 w-5 h-5" />
+                      <button
+                        onClick={() => openModal(singleOrder._id)}
+                        disabled={singleOrder.paid}
+                      >
+                        <MdDeleteForever
+                          className={`${
+                            singleOrder.paid
+                              ? "text-gray-500 w-5 h-5"
+                              : "text-red-500 w-5 h-5"
+                          }`}
+                        />
                       </button>
                       <br />
                     </td>

@@ -27,7 +27,6 @@
     "react-hook-form": "^7.43.4",
     "react-hot-toast": "^2.4.0",
     "react-icons": "^4.8.0",
-    "react-query": "^3.39.3",
     "react-slick": "^0.29.0",
     "slick-carousel": "^1.8.1",
     "sweetalert2": "^11.7.3",

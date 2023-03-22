@@ -3,6 +3,8 @@ import React from "react";
 import Lottie from "lottie-react";
 import Car from "../../public/Car.json";
 import { IoCheckmarkDoneCircle } from "react-icons/io5";
+import { AiFillGithub } from "react-icons/ai";
+import Link from "next/link";
 
 type Props = {};
 
@@ -46,6 +48,16 @@ const Hero = (props: Props) => {
             <span className="font-bold text-black">100% recyclable </span> – All
             of our products are 100% recyclable
           </p>
+        </div>
+        <div className="mt-4">
+          <Link
+            href="https://github.com/AlAminKh03/motor-merchants"
+            target="_blank"
+            className="flex items-center gap-6 border border-indigo-500 bg-indigo-50 hover:bg-indigo-200 transition-all ease-in duration-300 mr-[64%] p-2  rounded-md"
+          >
+            <AiFillGithub className="w-6 h-6" />
+            <p className="font-bold">Source Code</p>
+          </Link>
         </div>
       </div>
       <div className="w-[430px] h-[400px] md:w-[550px] md:h-[500px]">

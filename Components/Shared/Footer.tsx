@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 type Props = {};
@@ -6,20 +7,30 @@ type Props = {};
 const Footer = (props: Props) => {
   return (
     <div className="">
-      <footer className="footer py-10 px-10 lg:px-[200px] bg-gray-200 text-gray-900">
+      <footer className="footer py-10 px-10 lg:px-[200px] bg-gray-100 text-gray-900 hidden lg:flex lg:gap-64 justify-center">
         <div>
           <span className="footer-title">Services</span>
           <a className="link link-hover">Branding</a>
           <a className="link link-hover">Design</a>
           <a className="link link-hover">Marketing</a>
-          <a className="link link-hover">Advertisement</a>
         </div>
         <div>
           <span className="footer-title">Company</span>
-          <a className="link link-hover">About us</a>
-          <a className="link link-hover">Contact</a>
-          <a className="link link-hover">Jobs</a>
-          <a className="link link-hover">Press kit</a>
+          <Link href={"/about"} className="link link-hover">
+            About us
+          </Link>
+          <div
+            className="tooltip"
+            data-tip="I have provided my fb and twitter also github account please dm me if you have any queries."
+          >
+            <a className="link link-hover">Contact</a>
+          </div>
+          <div
+            className="tooltip"
+            data-tip="We ain't currently hiring but we will very soon, so stay with us."
+          >
+            <a className="link link-hover">Job</a>
+          </div>
         </div>
         <div>
           <span className="footer-title">Legal</span>
@@ -28,9 +39,9 @@ const Footer = (props: Props) => {
           <a className="link link-hover">Cookie policy</a>
         </div>
       </footer>
-      <footer className="footer px-10 lg:px-[200px] py-4 border-t bg-gray-200 text-gray-900 border-base-300">
+      <footer className="footer px-10 lg:px-[280px] py-4 border-t bg-gray-200 text-gray-900 border-base-300">
         <div className="items-center grid-flow-col">
-         <Image src="/vercel.svg" alt="footer image" width={80} height={80}/>
+          <Image src="/vercel.svg" alt="footer image" width={80} height={80} />
           <p>
             Motor Merchants <br />
             Providing reliable tech since 1992

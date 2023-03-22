@@ -1,14 +1,33 @@
-import { GetStaticProps } from "next";
-import React, { useContext } from "react";
-import { User } from "../../pages/dashboard/manageUsers";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Contexts/AuthProvider";
+import Loading from "../Loading/Loading";
+import { User } from "../../pages/dashboard/manageUsers";
 
 interface UserProps {
   users: User[];
+  refetch: any;
 }
 
-const ManageUser = ({ users }: UserProps) => {
-  const { user } = useContext(AuthContext);
+const ManageUser = ({ users, refetch }: UserProps) => {
+  const { loading } = useContext(AuthContext);
+
+  const makeAdmin = (id: string) => {
+    fetch(`http://localhost:8000/user/admin/${id}`, {
+      method: "PATCH",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        console.log(users);
+        refetch();
+      });
+  };
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <div>
       <div className="overflow-x-auto  mt-5">
@@ -22,15 +41,15 @@ const ManageUser = ({ users }: UserProps) => {
             </tr>
           </thead>
           <tbody>
-            {users.map((singleuser: User, i: number) => {
+            {users?.map((user: User, i: number) => {
               return (
-                <React.Fragment key={singleuser._id}>
+                <React.Fragment key={user._id}>
                   <tr className="border text-center">
                     <th className="border px-4 py-2">{i + 1}</th>
-                    <td className="border px-4 py-2">{singleuser.userName}</td>
+                    <td className="border px-4 py-2">{user.userName}</td>
                     <td className="border px-4 py-2">
-                      {singleuser.email}
-                      {user?.emailVerified ? (
+                      {user.email}
+                      {/* {user?.emailVerified ? (
                         <span className="bg-indigo-100 text-indigo-800 text-xs font-bold rounded-xl">
                           {" "}
                           VERIFIED{" "}
@@ -40,22 +59,20 @@ const ManageUser = ({ users }: UserProps) => {
                           {" "}
                           NOT VERIFIED{" "}
                         </span>
-                      )}
+                      )} */}
                     </td>
                     <td className="border px-4 py-2">
-                      {/* {user.role ? (
+                      {user.role !== "admin" ? (
+                        <button
+                          className="border border-green-500 rounded-full bg-green-500 p-1 text-white text-xs"
+                          onClick={() => makeAdmin(user._id)}
+                        >
+                          make admin
+                        </button>
+                      ) : (
                         <p className="text-gray-500 text-xs">ADMIN</p>
-                      ) : ( */}
-                      <button className="border border-green-500 rounded-full bg-green-500 p-1 text-white text-xs">
-                        make admin
-                      </button>
-                      {/* )} */}
+                      )}
                     </td>
-                    {/* <td className="border px-4 py-2">
-                      <button className="border border-red-500 rounded-full bg-red-500 p-1 text-white text-xs">
-                        delete
-                      </button>
-                    </td> */}
                   </tr>
                 </React.Fragment>
               );
