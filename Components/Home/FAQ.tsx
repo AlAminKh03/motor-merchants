@@ -111,7 +111,8 @@ const FAQ = (props: Props) => {
                 at 0 cost
                 <br />
                 <span className="text-indigo-600">
-                  But there's deadline it's April 14, 2023. So hurry up!
+                  But there&apos;s deadline it&apos;s April 14, 2023. So hurry
+                  up!
                 </span>
               </p>
             </div>

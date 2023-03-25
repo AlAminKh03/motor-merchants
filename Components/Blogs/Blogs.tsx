@@ -591,7 +591,7 @@ const Blogs = (props: Props) => {
                   <p className=" text-lg lg:text-sm text-gray-600 tracking-tighter">
                     {" "}
                     Innovations in the Automotive Industry&apos; As the
-                    automotive industry evolves, we're seeing a significant
+                    automotive industry evolves, we&apos;re seeing a significant
                     shift ...
                   </p>
 

@@ -69,7 +69,7 @@ const Login: React.FC = (): JSX.Element => {
           <p className="text-4xl font-bold text-center ">Welcome Back!</p>
           <p className="text-center">
             <span className="text-gray-500 text-center gap-2">
-              Don't have any account yet?
+              Don&apos;t have any account yet?
             </span>
             <Link
               href={"/signup"}

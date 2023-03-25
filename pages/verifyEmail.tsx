@@ -4,7 +4,7 @@ import Link from "next/link";
 
 type Props = {};
 
-const verifyEmail = (props: Props) => {
+const VerifyEmail = (props: Props) => {
   const { user } = useContext(AuthContext);
   return (
     <div
@@ -40,4 +40,4 @@ const verifyEmail = (props: Props) => {
   );
 };
 
-export default verifyEmail;
+export default VerifyEmail;
