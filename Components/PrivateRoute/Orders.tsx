@@ -26,7 +26,7 @@ const Orders = ({ order, refetch, isLoading }: OrdersProps) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:8000/order/${id}`, {
+        fetch(`https://motor-merchants-server.vercel.app/order/${id}`, {
           method: "DELETE",
           headers: {
             authorization: `Bearer ${localStorage.getItem("accessToken")}`,

@@ -18,7 +18,7 @@ function Products({ products }: ProductsProps) {
         {products.map((product) => {
           return (
             <div key={product._id}>
-              <div className="card card-side border border-gray-100 shadow-lg rounded-md flex md:flex-row items-center justify-center p-4 gap-2 h-auto lg:h-[270px]">
+              <div className="card card-side border-[3px] border-b-gray-800 border-b-8 border-gray-800  border-r-8 rounded-md flex md:flex-row items-center justify-center p-4 gap-2 h-auto lg:h-[270px]">
                 <div className="">
                   <Image
                     src={product.ImgUrl}
@@ -54,12 +54,13 @@ function Products({ products }: ProductsProps) {
                     / per unit
                   </p>
 
-                  <div className="py-3 flex items-center justify-start gap-3 uppercase text-indigo-900 font-semibold bg-indigo-100 p-2 rounded-md hover:bg-indigo-200 mr-24 cursor-pointer">
+                  <Link
+                    className=" flex items-center justify-center gap-3 uppercase text-indigo-900 font-semibold bg-indigo-100 p-2 rounded-md border border-gray-800 border-b-4 hover:bg-indigo-200 cursor-pointer "
+                    href={`/${product._id}`}
+                  >
                     <BiCartAlt className="w-4 h-4" />
-                    <Link className="" href={`/${product._id}`}>
-                      Purchase
-                    </Link>
-                  </div>
+                    Purchase
+                  </Link>
                 </div>
               </div>
             </div>

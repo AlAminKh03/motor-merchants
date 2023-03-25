@@ -1,6 +1,7 @@
 import React from "react";
 import PrivateRoute from "../../Components/PrivateRoute/PrivateRoute";
 import NestedNav from "../../Components/PrivateRoute/NestedNav";
+import MyProfile from "../../Components/PrivateRoute/MyProfile";
 
 type Props = {};
 
@@ -11,7 +12,9 @@ const myProfile = (props: Props) => {
         <div>
           <NestedNav />
         </div>
-        <div className="relative mx-auto lg:pt-0 "></div>
+        <div className="relative  lg:pt-0 ">
+          <MyProfile />
+        </div>
       </div>
     </PrivateRoute>
   );
