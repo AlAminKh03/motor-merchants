@@ -25,7 +25,7 @@ interface Inputs {
   available: number;
 }
 
-const addProducts = () => {
+const AddProducts = () => {
   const router = useRouter();
   const {
     register,
@@ -290,4 +290,4 @@ const addProducts = () => {
   );
 };
 
-export default addProducts;
+export default AddProducts;

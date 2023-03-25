@@ -80,7 +80,7 @@ const MyProfile = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [user.email]);
   if (loading) {
     return <Loading />;
   }

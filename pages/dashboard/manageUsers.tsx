@@ -17,7 +17,7 @@ interface UserProps {
   user: User[];
 }
 
-const manageUsers = () => {
+const ManageUsers = () => {
   const { loading } = useContext(AuthContext);
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
@@ -48,4 +48,4 @@ const manageUsers = () => {
   );
 };
 
-export default manageUsers;
+export default ManageUsers;

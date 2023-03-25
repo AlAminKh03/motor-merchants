@@ -21,8 +21,8 @@ const Hero = (props: Props) => {
         <p className="text-gray-500">
           Our unwavering commitment to excellence and innovation has made us the
           go-to choice for top-tier automotive companies worldwide. Rest
-          assured, we'll continue to set the standard for the industry with our
-          cutting-edge technology and superior products.
+          assured, we&apos;ll continue to set the standard for the industry with
+          our cutting-edge technology and superior products.
         </p>
         <div className="flex justify-center gap-2 mt-4">
           <IoCheckmarkDoneCircle className="w-8 h-8 text-indigo-500 " />

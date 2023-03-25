@@ -15,7 +15,7 @@ interface Inputs {
   password: string;
 }
 
-const signup = () => {
+const Signup = () => {
   const [currentUser, setCurrentUser] = useState<string>("");
   const [token] = useToken(currentUser);
   const router = useRouter();
@@ -232,4 +232,4 @@ const signup = () => {
   );
 };
 
-export default signup;
+export default Signup;

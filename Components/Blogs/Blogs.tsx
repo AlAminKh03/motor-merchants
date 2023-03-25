@@ -90,8 +90,9 @@ const Blogs = (props: Props) => {
                   </p>
                   <p className=" text-lg lg:text-sm text-gray-600 tracking-tighter">
                     {" "}
-                    Innovations in the Automotive Industry" As the automotive
-                    industry evolves, we're seeing a significant shift ...
+                    Innovations in the Automotive Industry&quot; As the
+                    automotive industry evolves, we&apos;re seeing a significant
+                    shift ...
                   </p>
 
                   <p className="mt-2 text-xs text-indigo-700 ">3 mins read</p>
@@ -122,8 +123,8 @@ const Blogs = (props: Props) => {
                           So what is this MOBILE MACHANICS !?
                         </h3>
                         <p className="py-4 text-black">
-                          Innovations in the Automotive Industry" As the
-                          automotive industry evolves, we're seeing a
+                          Innovations in the Automotive Industry As the
+                          automotive industry evolves, we&apos;re seeing a
                           significant shift towards connected cars and new
                           energy sources. Connected cars use advanced sensors
                           and data analytics to provide drivers with real-time
@@ -231,10 +232,10 @@ const Blogs = (props: Props) => {
                     and make our roads safer and more efficient. As these
                     innovations continue to evolve, we can expect to see a
                     revolution in the automotive industry.
-                    <br /> Summary: "Green Driving: The Role of Electric and
-                    Alternative Energy Vehicles" As the world moves towards a
-                    more sustainable future, electric and alternative energy
-                    vehicles are becoming increasingly popular. The
+                    <br /> Summary: &apos;Green Driving: The Role of Electric
+                    and Alternative Energy Vehicles&apos; As the world moves
+                    towards a more sustainable future, electric and alternative
+                    energy vehicles are becoming increasingly popular. The
                     environmental benefits of these vehicles, such as zero
                     emissions and reduced dependence on fossil fuels, make them
                     an attractive option for eco-conscious consumers. In
@@ -339,8 +340,9 @@ const Blogs = (props: Props) => {
                   </p>
                   <p className=" text-lg lg:text-sm text-gray-600 tracking-tighter">
                     {" "}
-                    Innovations in the Automotive Industry" As the automotive
-                    industry evolves, we're seeing a significant shift ...
+                    Innovations in the Automotive Industry&apos; As the
+                    automotive industry evolves, we&apos;re seeing a significant
+                    shift ...
                   </p>
 
                   <p className="mt-2 text-xs text-indigo-700 ">3 mins read</p>
@@ -371,8 +373,8 @@ const Blogs = (props: Props) => {
                           So what is this MOBILE MACHANICS !?
                         </h3>
                         <p className="py-4 text-black">
-                          Innovations in the Automotive Industry" As the
-                          automotive industry evolves, we're seeing a
+                          Innovations in the Automotive Industry&apos; As the
+                          automotive industry evolves, we&apos;re seeing a
                           significant shift towards connected cars and new
                           energy sources. Connected cars use advanced sensors
                           and data analytics to provide drivers with real-time
@@ -480,10 +482,10 @@ const Blogs = (props: Props) => {
                     and make our roads safer and more efficient. As these
                     innovations continue to evolve, we can expect to see a
                     revolution in the automotive industry.
-                    <br /> Summary: "Green Driving: The Role of Electric and
-                    Alternative Energy Vehicles" As the world moves towards a
-                    more sustainable future, electric and alternative energy
-                    vehicles are becoming increasingly popular. The
+                    <br /> Summary: &apos;Green Driving: The Role of Electric
+                    and Alternative Energy Vehicles&apos; As the world moves
+                    towards a more sustainable future, electric and alternative
+                    energy vehicles are becoming increasingly popular. The
                     environmental benefits of these vehicles, such as zero
                     emissions and reduced dependence on fossil fuels, make them
                     an attractive option for eco-conscious consumers. In
@@ -588,8 +590,9 @@ const Blogs = (props: Props) => {
                   </p>
                   <p className=" text-lg lg:text-sm text-gray-600 tracking-tighter">
                     {" "}
-                    Innovations in the Automotive Industry" As the automotive
-                    industry evolves, we're seeing a significant shift ...
+                    Innovations in the Automotive Industry&apos; As the
+                    automotive industry evolves, we're seeing a significant
+                    shift ...
                   </p>
 
                   <p className="mt-2 text-xs text-indigo-700 ">3 mins read</p>
@@ -620,8 +623,8 @@ const Blogs = (props: Props) => {
                           So what is this MOBILE MACHANICS !?
                         </h3>
                         <p className="py-4 text-black">
-                          Innovations in the Automotive Industry" As the
-                          automotive industry evolves, we're seeing a
+                          Innovations in the Automotive Industry&apos; As the
+                          automotive industry evolves, we&apos;re seeing a
                           significant shift towards connected cars and new
                           energy sources. Connected cars use advanced sensors
                           and data analytics to provide drivers with real-time
@@ -729,10 +732,10 @@ const Blogs = (props: Props) => {
                     and make our roads safer and more efficient. As these
                     innovations continue to evolve, we can expect to see a
                     revolution in the automotive industry.
-                    <br /> Summary: "Green Driving: The Role of Electric and
-                    Alternative Energy Vehicles" As the world moves towards a
-                    more sustainable future, electric and alternative energy
-                    vehicles are becoming increasingly popular. The
+                    <br /> Summary: &apos;Green Driving: The Role of Electric
+                    and Alternative Energy Vehicles&apos; As the world moves
+                    towards a more sustainable future, electric and alternative
+                    energy vehicles are becoming increasingly popular. The
                     environmental benefits of these vehicles, such as zero
                     emissions and reduced dependence on fossil fuels, make them
                     an attractive option for eco-conscious consumers. In
@@ -837,8 +840,9 @@ const Blogs = (props: Props) => {
                   </p>
                   <p className=" text-lg lg:text-sm text-gray-600 tracking-tighter">
                     {" "}
-                    Innovations in the Automotive Industry" As the automotive
-                    industry evolves, we're seeing a significant shift ...
+                    Innovations in the Automotive Industry&apos; As the
+                    automotive industry evolves, we&apos;re seeing a significant
+                    shift ...
                   </p>
 
                   <p className="mt-2 text-xs text-indigo-700 ">3 mins read</p>
@@ -869,8 +873,8 @@ const Blogs = (props: Props) => {
                           So what is this MOBILE MACHANICS !?
                         </h3>
                         <p className="py-4 text-black">
-                          Innovations in the Automotive Industry" As the
-                          automotive industry evolves, we're seeing a
+                          Innovations in the Automotive Industry&apos; As the
+                          automotive industry evolves, we&apos;re seeing a
                           significant shift towards connected cars and new
                           energy sources. Connected cars use advanced sensors
                           and data analytics to provide drivers with real-time
@@ -978,10 +982,10 @@ const Blogs = (props: Props) => {
                     and make our roads safer and more efficient. As these
                     innovations continue to evolve, we can expect to see a
                     revolution in the automotive industry.
-                    <br /> Summary: "Green Driving: The Role of Electric and
-                    Alternative Energy Vehicles" As the world moves towards a
-                    more sustainable future, electric and alternative energy
-                    vehicles are becoming increasingly popular. The
+                    <br /> Summary: &apos;Green Driving: The Role of Electric
+                    and Alternative Energy Vehicles&apos; As the world moves
+                    towards a more sustainable future, electric and alternative
+                    energy vehicles are becoming increasingly popular. The
                     environmental benefits of these vehicles, such as zero
                     emissions and reduced dependence on fossil fuels, make them
                     an attractive option for eco-conscious consumers. In

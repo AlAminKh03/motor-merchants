@@ -28,9 +28,9 @@ const Service = (props: Props) => {
             available all our retail Stores.
             <br />
             <span className="italic text-gray-800">
-              " With the marging news we are bringing the most innovatitive
+              &quot; With the marging news we are bringing the most innovatitive
               services of all time in the history ever{"  "}
-              <br /> MOBILE MACHANICS "{" "}
+              <br /> MOBILE MACHANICS &quot;{" "}
             </span>
           </p>
           <div className=" flex gap-4 justify-end items-center">
@@ -62,15 +62,15 @@ const Service = (props: Props) => {
                   automobiles. It might be small, it might be Big . Previously
                   we would only provide some selective services for repairing.
                   Through the revolutionary MOBILE MACHANICS we can solve your
-                  problem no matter how small it is, Because that's what MOBILE
-                  MECHANICS means.
+                  problem no matter how small it is, Because that&apos;s what
+                  MOBILE MECHANICS means.
                 </p>
                 <p className="text-black">
                   We will hire mechanics according to your problem and give you
                   the best solution{" "}
                 </p>
                 <p className="italic bg-indigo-200 p-2 rounded-md text-black">
-                  We've an ongoing campaign for our new event , prebook the
+                  We&apos;ve an ongoing campaign for our new event , prebook the
                   service and lucky 10 person will get the FULL FREE installment
                   of their autmobiles
                 </p>

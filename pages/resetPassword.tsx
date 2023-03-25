@@ -12,7 +12,7 @@ const Toast = Swal.mixin({
   timerProgressBar: true,
 });
 
-const resetPassword = (props: Props) => {
+const ResetPassword = (props: Props) => {
   const { loading, setLoading, resetPassword } = useContext(AuthContext);
   if (loading) {
     return <Loading />;
@@ -71,4 +71,4 @@ const resetPassword = (props: Props) => {
   );
 };
 
-export default resetPassword;
+export default ResetPassword;

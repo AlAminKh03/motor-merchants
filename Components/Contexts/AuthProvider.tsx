@@ -159,7 +159,7 @@ const AuthProvider: React.FC<FunctionProps> = ({
       setLoading(false);
     });
     return () => unsbscribe();
-  }, [auth]);
+  }, []);
   console.log(user);
   const authInfo = {
     createUser,

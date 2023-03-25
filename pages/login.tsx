@@ -15,7 +15,7 @@ interface Inputs {
   password: string;
 }
 
-const login: React.FC = (): JSX.Element => {
+const Login: React.FC = (): JSX.Element => {
   const [currentUser, setCurrentUser] = useState<string>("");
 
   const { signInUser, user, signInWithGoogle, loading, setLoading } =
@@ -182,4 +182,4 @@ const login: React.FC = (): JSX.Element => {
   );
 };
 
-export default login;
+export default Login;

@@ -18,7 +18,7 @@ export interface OrderProps {
 }
 [];
 
-const index = () => {
+const Order = () => {
   const { user, loading } = useContext(AuthContext);
   // const [order, setOrder] = useState<OrderProps[]>([]);
   // useEffect(() => {
@@ -73,4 +73,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Order;

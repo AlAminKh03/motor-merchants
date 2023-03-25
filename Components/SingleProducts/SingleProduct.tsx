@@ -39,7 +39,7 @@ const SingleProduct = ({ product }: SingleProductProps) => {
   useEffect(() => {
     setSubTotal(value * product.price);
     setTotal(subTotal + 10);
-  }, [value, subTotal]);
+  }, [value, subTotal, product.price]);
   const handleIncrease = () => {
     setValue((prevValue) => prevValue + 1);
   };
