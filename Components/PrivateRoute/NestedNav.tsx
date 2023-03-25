@@ -120,14 +120,15 @@ const NestedNav = (props: Props) => {
           )}
           <li
             className={`flex flex-col items-center justify-center ${
-              isAdmin ? "mt-[11rem] " : "mt-[15rem]"
+              isAdmin ? "mt-[9.5rem] " : "mt-[13.5rem]"
             }`}
           >
-            <div
+            <Link
+              href={"/dashboard/myProfile"}
               className={`flex flex-col items-center  md:justify-center
                 text-gray-700  gap-2   cursor-pointer  ${
                   router.pathname === "/dashboard/myProfile"
-                    ? " text-indigo-900 bg-indigo-50 border-indigo-700 text-semibold"
+                    ? " text-indigo-900 bg-indigo-50 p-3 rounded-md border-indigo-700 text-semibold"
                     : ""
                 }`}
             >
@@ -151,8 +152,6 @@ const NestedNav = (props: Props) => {
                   <p className="text-gray-500 text-xs">{user.email}</p>
                 </div>
               </div>
-            </div>
-            <Link href={"/dashboard/myProfile"}>
               <AiFillSetting className="w-5 h-6 " />
             </Link>
           </li>

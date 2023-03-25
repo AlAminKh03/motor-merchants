@@ -9,6 +9,7 @@ import Link from "next/link";
 import { Url } from "url";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
+import Loading from "../Loading/Loading";
 
 interface ProfileProps {
   email: string;
@@ -42,7 +43,7 @@ const MyProfile = () => {
       githubLink: data.github,
     };
     console.log(updatedInfo);
-    fetch(`http://localhost:8000/user/${profile?.email}`, {
+    fetch(`https://motor-merchants-server.vercel.app/user/${profile?.email}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -53,7 +54,9 @@ const MyProfile = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        toast.success("Your information updated successfully 😊");
+        toast.success(
+          "Your information updated successfully 😊, Refresh the page to see updated information "
+        );
       })
       .catch((err) => {
         console.log(err);
@@ -63,7 +66,7 @@ const MyProfile = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8000/user/${user.email}`,
+          `https://motor-merchants-server.vercel.app/user/${user.email}`,
           {
             headers: {
               authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -78,6 +81,9 @@ const MyProfile = () => {
     };
     fetchData();
   }, []);
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <div className="grid lg:grid-cols-2 grid-cols-1">
       <div className="mx-[80px] border-2 border-gray-800 border-b-gray-800 border-b-8 border-r-8 p-16 rounded-md mt-10 ">
@@ -100,34 +106,34 @@ const MyProfile = () => {
               {profile?.userName}
             </p>
             <p className="text-sm">{profile?.email}</p>
-            <p className="flex items-center justify-start gap-2 mt-3">
-              <FaLocationArrow className="w-6 h-6 text-indigo-400" />{" "}
-              <span> : {profile?.location}</span>
+            <p className="flex items-center gap-2 mt-6 text-left">
+              <FaLocationArrow className="w-6 h-6 text-indigo-400 " />{" "}
+              <span className="text-xl font-bold"> : {profile?.location}</span>
             </p>
             <div className="flex mt-16 gap-3 justify-end">
               {profile?.githubLink ? (
                 <Link href={profile?.githubLink}>
                   {" "}
-                  <AiFillGithub className="w-4 h-4 cursor-pointer text-black skew-x-1 " />
+                  <AiFillGithub className="w-8 h-8 cursor-pointer text-black skew-x-1 " />
                 </Link>
               ) : (
-                <AiFillGithub className="w-4 h-4 text-gray-500 " />
+                <AiFillGithub className="w-8 h-8 text-gray-500 " />
               )}
               {profile?.linkdinLink ? (
                 <Link href={profile?.linkdinLink}>
                   {" "}
-                  <AiFillLinkedin className="w-4 h-4 cursor-pointer text-blue-500 skew-x-1 " />
+                  <AiFillLinkedin className="w-8 h-8 cursor-pointer text-blue-500 skew-x-1 " />
                 </Link>
               ) : (
-                <AiFillLinkedin className="w-4 h-4 text-gray-500 " />
+                <AiFillLinkedin className="w-8 h-8 text-gray-500 " />
               )}
               {profile?.fbLink ? (
                 <Link href={profile?.fbLink}>
                   {" "}
-                  <BsFacebook className="w-4 h-4 cursor-pointer text-blue-500 skew-x-1 " />
+                  <BsFacebook className="w-8 h-8 cursor-pointer text-blue-500 skew-x-1 " />
                 </Link>
               ) : (
-                <BsFacebook className="w-4 h-4 text-gray-500 hover:skew-x-[6]" />
+                <BsFacebook className="w-8 h-8 text-gray-500 hover:skew-x-[6]" />
               )}
             </div>
           </div>
