@@ -75,6 +75,7 @@ const Signup = () => {
   };
   const signInwithpopup = () => {
     signInWithGoogle();
+    setLoading(false);
   };
   if (loading) {
     return <Loading />;
