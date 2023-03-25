@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { OrderProps } from "../../pages/dashboard";
 import Link from "next/link";
-import { useQuery } from "react-query";
 import { AuthContext } from "../Contexts/AuthProvider";
 import Loading from "../Loading/Loading";
 import { MdDeleteForever } from "react-icons/md";
