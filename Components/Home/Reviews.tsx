@@ -83,8 +83,8 @@ const Reviews = (props: Props) => {
                   height={300}
                   className="w-[400px] h-[400px]"
                 />
-                <div className="absolute  top-[20%] left-[5%] px-6 lg:px-0 w-[260px]  lg:w-[300px]">
-                  <p className="text-base lg:text-lg  font-bold  text-black p-2 leading-[12px] font-[VT323] ">
+                <div className="absolute  top-[20%] left-[5%] px-6 lg:px-0 w-[230px]  lg:w-[300px]">
+                  <p className="text-base lg:text-lg  font-bold  text-black p-2  font-[VT323] ">
                     <span className="lg:text-2xl text-base ">&rsquo;</span>{" "}
                     {review.comment}
                   </p>
