@@ -58,14 +58,14 @@ const Order = () => {
   }
   return (
     <PrivateRoute>
-      <div className="flex lg:mt-20 mt-10">
-        <div>
+      <div className="flex gap-2 lg:mt-20 mt-10 h-screen w-[90%]">
+        <div className="mb-4">
           <NestedNav />
         </div>
-        <div className="relative mx-auto lg:mr-[220px] pt-14 lg:pt-0 h-screen">
-          <p className="text-sm font-bold pt-2">
+        <div className="relative mx-auto lg:mr-[220px] pt-14 lg:pt-0 h-screen w-full">
+          {/* <p className="text-sm font-bold pt-2">
             Ordered email : {user?.email}
-          </p>
+          </p> */}
           <Orders order={order} refetch={refetch} isLoading={isLoading} />
         </div>
       </div>

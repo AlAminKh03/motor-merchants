@@ -10,7 +10,7 @@ type Props = {};
 
 const Hero = (props: Props) => {
   return (
-    <div className="flex flex-col  lg:grid lg:grid-cols-2 justify-center items-center gap-10 px-10 mt-16 lg:mt-5">
+    <div className="flex flex-col  lg:grid lg:grid-cols-2 justify-center items-center gap-10 px-10 mt-20 lg:mt-5">
       <div>
         <p className="text-4xl font-bold text-black">
           <span className="bg-indigo-100 p-2 rounded-md">Power</span> Your Ride!
@@ -53,14 +53,14 @@ const Hero = (props: Props) => {
           <Link
             href="https://github.com/AlAminKh03/motor-merchants"
             target="_blank"
-            className="flex items-center gap-6 border border-indigo-500 bg-indigo-50 hover:bg-indigo-200 transition-all ease-in duration-300 mr-[64%] p-2  rounded-md"
+            className="flex items-center justify-center gap-6 border border-indigo-500 bg-indigo-50 hover:bg-indigo-100 transition-all ease-in duration-300 mr-[40%] lg:mr-[64%] p-2  rounded-md"
           >
             <AiFillGithub className="w-6 h-6" />
             <p className="font-bold">Source Code</p>
           </Link>
         </div>
       </div>
-      <div className="w-[430px] h-[400px] md:w-[550px] md:h-[500px]">
+      <div className="flex items-center center justify-center md:w-[550px] md:h-[500px]">
         <Lottie animationData={Car} loop={true} />
       </div>
     </div>

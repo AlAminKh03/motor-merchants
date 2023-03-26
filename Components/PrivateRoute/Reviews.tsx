@@ -118,7 +118,7 @@ const Reviews = (props: Props) => {
               value={comment}
               onChange={(e) => setComment(e.target.value)}
               required
-              className="w-[400px] h-[150px] outline-none border border-indigo-400 focus:border-indigo-900 rounded-md"
+              className=" w-[300px] lg:w-[400px] h-[150px] outline-none border border-indigo-400 focus:border-indigo-900 rounded-md"
             ></textarea>
           </div>
         </div>

@@ -35,11 +35,11 @@ const ManageUsers = () => {
   return (
     <PrivateRoute>
       <AdminROute>
-        <div className="flex lg:mt-20 mt-10 ">
+        <div className="flex gap-2 lg:mt-20 mt-10 h-screen w-[90%]">
           <div className="">
             <NestedNav />
           </div>
-          <div className="relative mx-auto pt-10 lg:pt-0 h-screen">
+          <div className="relative mx-auto lg:mr-[220px] pt-14 lg:pt-0 h-full w-full">
             <ManageUser users={users} refetch={refetch} />
           </div>
         </div>

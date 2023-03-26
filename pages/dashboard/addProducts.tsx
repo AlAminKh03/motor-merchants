@@ -63,13 +63,13 @@ const AddProducts = () => {
   return (
     <PrivateRoute>
       <AdminROute>
-        <div className="flex mt-20">
+        <div className="flex gap-2 lg:mt-20 mt-10 min-h-screen w-[90%] ">
           <div className="">
             <NestedNav />
           </div>
-          <div className="relative mx-auto pt-10 lg:pt-0">
-            <div className="flex flex-col justify-center items-center pt-7 mx-auto ">
-              <div className="pb-4">
+          <div className="relative lg:mr-[220px] pt-14 lg:pt-0 min-h-screen w-full ">
+            <div className="flex flex-col justify-center items-center pt-7  ">
+              <div className="">
                 <p className="text-4xl font-bold text-center ">
                   Hello{" "}
                   <span className="text-transparent   bg-clip-text bg-gradient-to-r from-indigo-700 to-purple-500  font-bold">
@@ -80,7 +80,7 @@ const AddProducts = () => {
                   </span>
                 </p>
               </div>
-              <div className="flex flex-col items-center px-4 py-10  w-[80%] md:w-[50%]">
+              <div className="flex flex-col items-center justify-center pl-5 py-5 lg:py-0  w-[75%] md:w-[50%]">
                 <form onSubmit={handleSubmit(onSubmit)}>
                   {/* PRODUCT NAME  */}
                   <div className=" pb-3 w-full">
@@ -271,7 +271,7 @@ const AddProducts = () => {
                     )}
                   </div>
 
-                  <div className="relative">
+                  <div className="relative mb-10">
                     <button
                       type="submit"
                       className=" w-full text-center text-indigo-700 border border-indigo-700 bg-white p-1  mt-2  hover:bg-indigo-100 transition-all duration-150 ease-in rounded-md"

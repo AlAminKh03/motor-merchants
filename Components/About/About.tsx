@@ -6,7 +6,7 @@ type Props = {};
 const About = (props: Props) => {
   return (
     <div>
-      <div className="flex flex-col-reverse lg:grid lg:gap-10  lg:grid-cols-2 items-center justify-center">
+      <div className="flex flex-col-reverse grid-cols-1 lg:grid lg:gap-10  lg:grid-cols-2 items-center justify-center">
         <div className="lg:pt-10 pt-2 px-10">
           <p className="underline text-7xl pl-4 lg:pl-12 text-indigo-600">
             Who
@@ -14,7 +14,7 @@ const About = (props: Props) => {
             we are
           </p>
           <div className="lg:pt-20 pt-5 text-gray-700 text-sm">
-            <p className="mr-20">
+            <p className=" mr-4 lg:mr-20">
               Motor Merchants is a visionary automobile company that has been
               operating since 2001. The company is committed to developing
               innovative solutions that cater to the needs and desires of its
@@ -37,38 +37,38 @@ const About = (props: Props) => {
             </p>
           </div>
         </div>
-        <div className="relative pt-16 lg:pt-0 mb-20">
-          <div className="w-[500px] h-[500px] absolute top-2 lg:-top-20 -left-24  lg:-left-28">
+        <div className="relative pt-0 lg:pt-0 mb-5 lg:mb-20 mx-auto">
+          <div className="w-[300px] h-[300px] lg:w-[500px] lg:h-[500px] relative lg:absolute top-2 lg:-top-20   lg:-left-28 flex items-center justify-center ">
             <Image
               src={"/about-2.svg"}
               alt="about image"
               fill
-              className=" absolute   z-10    "
+              className=" relative lg:absolute   z-10    "
             />
           </div>
-          <div className=" w-[400px] h-[270px] lg:w-[350px] lg:h-[270px] bg-indigo-100 "></div>
+          <div className=" hidden lg:block w-[400px] h-[270px] lg:w-[350px] lg:h-[270px] bg-indigo-100 "></div>
         </div>
       </div>
-      <div className="flex flex-col lg:grid lg:gap-10  lg:grid-cols-2 items-center justify-center mb-10">
-        <div className="relative pt-16 lg:pt-0 mb-20">
-          <div className="w-[500px] h-[500px] absolute top-2 lg:-top-20 -left-24  lg:-left-28">
+      <div className="flex flex-col lg:grid grid-cols-1  lg:gap-10  lg:grid-cols-2 items-center justify-center mb-10">
+        <div className="relative pt-0 lg:pt-0 mb-5 lg:mb-20 mx-auto">
+          <div className="w-[300px] h-[300px] lg:w-[500px] lg:h-[500px] relative lg:absolute top-2 lg:-top-20   lg:-left-28 flex items-center justify-center ">
             <Image
               src={"/environment.svg"}
               alt="about image"
               fill
-              className=" absolute   z-10    "
+              className=" relative lg:absolute   z-10    "
             />
           </div>
-          <div className=" w-[400px] h-[400px] lg:w-[400px] lg:h-[400px] bg-indigo-100 rounded-full "></div>
+          <div className=" hidden lg:block w-[400px] h-[270px] lg:w-[350px] lg:h-[270px] bg-indigo-100 "></div>
         </div>
         <div className="lg:pt-10 pt-2 px-10">
-          <p className="underline text-7xl pl-4 lg:pl-12 text-indigo-600">
+          <p className="underline text-5xl lg:text-7xl  lg:pl-12 text-indigo-600">
             our motto:
             <br />
             environment
           </p>
           <div className="lg:pt-20 pt-5 text-gray-700 text-sm">
-            <p className="mr-20">
+            <p className="mr-4 lg:mr-20">
               As we become increasingly aware of the impact of human activities
               on the environment, it is important that we take steps to reduce
               our carbon footprint and minimize our impact on the planet. One

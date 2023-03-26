@@ -71,7 +71,7 @@ const Reviews = (props: Props) => {
         What Our Clients Say
       </p>
 
-      <Slider {...settings} className="mr-0 lg:ml-20 pb-4 ">
+      <Slider {...settings} className="mr-0 ml-0 lg:ml-20 pb-4 ">
         {reviews?.map((review: ReviewProps) => {
           return (
             <div key={review._id} className="ml-0 lg:ml-36">
@@ -81,8 +81,9 @@ const Reviews = (props: Props) => {
                   alt="review image"
                   width={350}
                   height={300}
+                  className="w-[400px] h-[400px]"
                 />
-                <div className="absolute top-[22%] left-[5%] w-[220px] h-[130px]">
+                <div className="absolute  top-[20%] left-[5%] px-6 lg:px-0  lg:w-[300px]">
                   <p className="text-base lg:text-lg  font-bold  text-black p-2 leading-[12px] font-[VT323] ">
                     <span className="lg:text-2xl text-base ">&rsquo;</span>{" "}
                     {review.comment}
@@ -112,7 +113,7 @@ const Reviews = (props: Props) => {
                   )}
 
                   <div className="flex flex-col justify-center ">
-                    <p className="text-black font-bold text-sm lg:text-lg font-[VT323]">
+                    <p className="text-black font-bold text-sm lg:text-lg lg:font-[VT323]">
                       {review.name}
                     </p>
                     <p className="text-xs text-gray-500">{review.email}</p>

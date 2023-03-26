@@ -53,9 +53,9 @@ const Orders = ({ order, refetch, isLoading }: OrdersProps) => {
     return <Loading />;
   }
   return (
-    <div className="flex flex-col justify-center items-center  mx-auto ">
-      <div className="mt-4">
-        <table className="table md:w-[800px] ">
+    <div className="">
+      <div className="mt-4 overflow-x-auto">
+        <table className="table w-full ">
           <thead>
             <tr>
               <th className="px-4 py-2 "></th>

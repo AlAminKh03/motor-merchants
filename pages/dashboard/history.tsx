@@ -8,11 +8,11 @@ type Props = {};
 const history = (props: Props) => {
   return (
     <PrivateRoute>
-      <div className="flex mt-20">
+      <div className="flex gap-2 lg:mt-20 mt-10 h-screen w-[90%]">
         <div>
           <NestedNav />
         </div>
-        <div className="relative mx-auto pt-10 lg:pt-0 h-screen ">
+        <div className="relative mx-auto lg:mr-[220px] pt-14 lg:pt-0 h-screen w-full">
           <Construction />
         </div>
       </div>

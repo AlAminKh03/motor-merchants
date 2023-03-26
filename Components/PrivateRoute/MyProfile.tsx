@@ -85,8 +85,8 @@ const MyProfile = () => {
     return <Loading />;
   }
   return (
-    <div className="grid lg:grid-cols-2 grid-cols-1">
-      <div className="mx-[80px] border-2 border-gray-800 border-b-gray-800 border-b-8 border-r-8 p-16 rounded-md mt-10 ">
+    <div className="grid lg:grid-cols-2 grid-cols-1 gap-6 ">
+      <div className=" border-2 border-gray-800 border-b-gray-800 border-b-8 border-r-8 p-4 rounded-md mt-10  ">
         <div>
           <div className="flex flex-col items-center justify-center">
             {user?.photoURL ? (
@@ -102,7 +102,7 @@ const MyProfile = () => {
                 <CgProfile className="w-10 h-10  " />
               </div>
             )}
-            <p className="font-[VT323] text-3xl border border-gray-800 border-b-gray-800 border-b-4 border-r-4 rounded-md p-1 mt-4 bg-indigo-100 text-center">
+            <p className="font-[VT323]text-base lg:text-3xl border border-gray-800 border-b-gray-800 border-b-4 border-r-4 rounded-md p-1 mt-4 bg-indigo-100 text-center">
               {profile?.userName}
             </p>
             <p className="text-sm">{profile?.email}</p>
@@ -139,7 +139,7 @@ const MyProfile = () => {
           </div>
         </div>
       </div>
-      <div className=" mx-[70px] border-2 border-gray-800 border-b-gray-800 border-b-8 border-r-8 p-8 rounded-md mt-10">
+      <div className="  border-2 border-gray-800 border-b-gray-800 border-b-8 border-r-8 p-4  rounded-md mt-10 mb-10 lg:mb-0 ">
         <p className="font-[VT323] text-lg border border-gray-800 border-b-gray-800 border-b-4 border-r-4 rounded-md p-1 mt-4 bg-indigo-100 text-center font-bold">
           Update/Modify your location and social
         </p>

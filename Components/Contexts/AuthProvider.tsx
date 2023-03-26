@@ -91,7 +91,6 @@ const AuthProvider: React.FC<FunctionProps> = ({
       password
     );
     const user = userCredential.user;
-    console.log("from user credential", userCredential);
     await sendEmailVerification(user);
     return user;
   };
@@ -160,7 +159,6 @@ const AuthProvider: React.FC<FunctionProps> = ({
     });
     return () => unsbscribe();
   }, []);
-  console.log(user);
   const authInfo = {
     createUser,
     signInUser,

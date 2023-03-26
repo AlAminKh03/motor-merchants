@@ -5,7 +5,6 @@ const useToken = (email: string) => {
   const [token, setToken] = useState<string>("");
   useEffect(() => {
     if (email) {
-      console.log("from inside of token function ", email);
       fetch(
         `https://motor-merchants-server.vercel.app/user/getJwt?email=${email}`
       )

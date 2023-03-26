@@ -23,7 +23,7 @@ const NestedNav = (props: Props) => {
   const [openNestedNav, setOpenNestedNav] = useState<boolean>(true);
   return (
     <div className="">
-      <div className=" mt-[2rem] md:mt-[0rem] md:hidden">
+      <div className=" -mt-5 md:hidden fixed z-20">
         {" "}
         {openNestedNav ? (
           <HiMenuAlt1
@@ -34,7 +34,7 @@ const NestedNav = (props: Props) => {
           />
         ) : (
           <RxCrossCircled
-            className="relative left-[190px] text-3xl  cursor-pointer text-white hover:text-gray-200 rounded z-40 top-8 "
+            className="relative left-[210px] text-3xl  cursor-pointer text-white hover:text-gray-200 rounded z-40 top-8 mt-[2rem]"
             style={{
               backdropFilter: "blur(10px)",
               backgroundColor: "rgba(0, 0, 0, 0.7)",
@@ -47,10 +47,10 @@ const NestedNav = (props: Props) => {
         )}
       </div>
       <div
-        className={` md:block  h-screen  bg-gray-50 w-[190px]  md:w-[250px] md:pl-10 ${
+        className={` md:block  h-screen  bg-gray-50 w-[210px]  md:w-[250px] md:pl-10 ${
           openNestedNav
             ? "hidden transition-all ease-in duration-500"
-            : "h-screen -mt-12 lg:-mt-10 pt-6  sticky z-10 transition-all ease-in duration-500 "
+            : "h-[95%] mt-4 lg:-mt-10 pt-6 transition-all ease-in duration-500 fixed z-20 "
         }`}
       >
         <ul className="  flex flex-col justify-center items-start pl-5 md:pl-0 mx-auto pt-4 ">
@@ -120,7 +120,9 @@ const NestedNav = (props: Props) => {
           )}
           <li
             className={`flex flex-col items-center justify-center ${
-              isAdmin ? "mt-[9.5rem] " : "mt-[13.5rem]"
+              isAdmin
+                ? " mt-[16rem] lg:mt-[9.5rem] "
+                : "mt-[20rem] lg:mt-[13.5rem]"
             }`}
           >
             <Link

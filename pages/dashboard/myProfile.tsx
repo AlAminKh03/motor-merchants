@@ -8,11 +8,11 @@ type Props = {};
 const myProfile = (props: Props) => {
   return (
     <PrivateRoute>
-      <div className="flex mt-20">
+      <div className="flex gap-2 lg:mt-20 mt-10 min-h-screen w-[90%]">
         <div>
           <NestedNav />
         </div>
-        <div className="relative  lg:pt-0 ">
+        <div className="  relative mx-[20px] lg:mx-[80px] pt-14 lg:pt-0 h-[70%] w-full ">
           <MyProfile />
         </div>
       </div>
