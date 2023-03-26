@@ -261,7 +261,7 @@ const SingleProduct = ({ product }: SingleProductProps) => {
                 errors.quantity
                   ? "focus-within:border-red-600"
                   : "focus-within:border-indigo-700"
-              } py-1 px-8 `}
+              } py-1 px-8 w-[170px]`}
             >
               <button type="button" onClick={handleDecrease}>
                 <AiOutlineMinus className="text-xl font-bold cursor-pointer" />
@@ -284,7 +284,7 @@ const SingleProduct = ({ product }: SingleProductProps) => {
           </div>
 
           <div className="relative">
-            <div className="py-2 flex items-center justify-center  uppercase text-indigo-900 font-semibold bg-indigo-100  rounded-md hover:bg-indigo-200 mr-24 cursor-pointer">
+            <div className="py-2 px-1 flex items-center justify-center  uppercase text-indigo-900 font-semibold bg-indigo-100  hover:bg-indigo-200 mr-10 lg:mr-24  p-2 rounded-md border border-gray-800 border-b-4  cursor-pointer">
               <BiCartAlt className="w-4 h-4" />
               <button type="submit" className="w-28">
                 place order

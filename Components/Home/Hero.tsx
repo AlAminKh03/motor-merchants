@@ -10,7 +10,7 @@ type Props = {};
 
 const Hero = (props: Props) => {
   return (
-    <div className="flex flex-col bg-white lg:grid lg:grid-cols-2 justify-center items-center gap-10 px-10 mt-20 lg:mt-5">
+    <div className="flex flex-col bg-white lg:grid lg:grid-cols-2 justify-center items-center gap-10 px-10 pt-20 lg:mt-5">
       <div>
         <p className="text-4xl font-bold text-black">
           <span className="bg-indigo-100 p-2 rounded-md">Power</span> Your Ride!

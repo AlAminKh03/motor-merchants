@@ -124,7 +124,7 @@ const Reviews = (props: Props) => {
         </div>
         <button
           type="submit"
-          className=" font-bold text-black bg-indigo-200 p-1 border border-indigo-600 rounded-md hover:bg-indigo-300 transition-all ease-in duration-300"
+          className=" font-bold text-black bg-indigo-50 p-1 border  rounded-md  transition-all ease-in duration-300  border-gray-800 border-b-4 hover:bg-indigo-200 cursor-pointer"
         >
           Submit
         </button>
