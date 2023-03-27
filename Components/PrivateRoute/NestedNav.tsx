@@ -121,8 +121,8 @@ const NestedNav = (props: Props) => {
           <li
             className={`flex flex-col items-center justify-center ${
               isAdmin
-                ? " mt-[16rem] lg:mt-[9.5rem] "
-                : "mt-[20rem] lg:mt-[13.5rem]"
+                ? " mt-[15rem] lg:mt-[9rem] "
+                : "mt-[19rem] lg:mt-[12.5rem]"
             }`}
           >
             <Link
