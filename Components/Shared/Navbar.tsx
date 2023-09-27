@@ -56,10 +56,10 @@ const Navbar: React.FC = (): JSX.Element => {
     ? menuItems.filter((item) => item.content !== "LOGIN")
     : menuItems.filter((item) => item.content !== "LOGOUT");
   return (
-    <div className=" relative z-50">
+    <div className=" relative z-50 ">
       <div className="mx-0  ">
         <div className=" w-full z-40 ">
-          <div className=" hidden w-[75%] py-1  bg-white lg:grid grid-cols-2  top-0 lg:fixed border-b-2 mx-[170px]">
+          <div className=" hidden w-full py-1  bg-white lg:grid grid-cols-2  top-0 lg:fixed border-b-2 px-48">
             <Link href={"/"}>
               <div className="flex items-center gap-2">
                 <Image
@@ -124,7 +124,7 @@ const Navbar: React.FC = (): JSX.Element => {
           </div>
           {/* for mobile  */}
           <div className="sm:block lg:hidden fixed z-30 top-0 left-0 w-full ">
-            <div className=" flex bg-white justify-around sticky min-w-full  px-5 gap-48 py-3 top-0 z-20">
+            <div className=" flex bg-white justify-around sticky min-w-full  px-5 gap-48 py-6 top-0 z-20">
               <div className="grow ">
                 <Link href={"/"}>
                   <div className="flex items-center gap-2">
@@ -146,7 +146,7 @@ const Navbar: React.FC = (): JSX.Element => {
                   </div>
                 </Link>
               </div>
-              <div className="">
+              <div>
                 {openMenuNav ? (
                   <AiOutlineClose
                     className="text-3xl cursor-pointer hover:bg-gray-100   rounded"
@@ -165,7 +165,7 @@ const Navbar: React.FC = (): JSX.Element => {
               </div>
             </div>
             <div
-              className={`bg-transparent  w-screen h-[40vh] absolute ${
+              className={`bg-transparent  w-screen h-[42vh] absolute ${
                 openMenuNav ? " right-0" : " right-[100%]"
               } text-left pl-6 transition-all ease-in duration-300 z-10 `}
               style={{
